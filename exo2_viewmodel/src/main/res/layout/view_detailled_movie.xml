@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/simple_movie_layout"
+        layout="@layout/view_poster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/detailled_movie_plot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/simple_movie_layout"
+        android:layout_marginTop="@dimen/spacing_base"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        tools:text="A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe." />
+
+    <TextView
+        android:id="@+id/detailled_movie_director"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detailled_movie_plot"
+        android:layout_marginTop="@dimen/spacing_base"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        tools:text="Director : James Gunn" />
+
+    <TextView
+        android:id="@+id/detailled_movie_writers"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detailled_movie_director"
+        android:layout_marginTop="@dimen/spacing_base"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        tools:text="Writers : James Gunn, Nicole Perlman, Dan Abnett (based on the Marvel comic book by), Andy Lanning" />
+
+    <TextView
+        android:id="@+id/detailled_movie_duration"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detailled_movie_writers"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_large"
+        android:textStyle="italic"
+        tools:text="Duration : 121 min" />
+
+    <RatingBar
+        android:id="@+id/detailled_movie_metacritic_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/detailled_movie_duration"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:rating="4" />
+
+    <ImageView
+        android:id="@+id/detailled_movie_metacritic_rating_icon"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/detailled_movie_metacritic_rating"
+        android:layout_marginEnd="@dimen/spacing_base"
+        android:layout_marginRight="@dimen/spacing_base"
+        android:layout_toLeftOf="@id/detailled_movie_metacritic_rating"
+        android:layout_toStartOf="@id/detailled_movie_metacritic_rating"
+        android:src="@drawable/icon_metacritic"
+        tools:ignore="ContentDescription" />
+
+    <RatingBar
+        android:id="@+id/detailled_movie_imdb_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/detailled_movie_metacritic_rating"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_base"
+        android:rating="4.5" />
+
+    <ImageView
+        android:id="@+id/detailled_movie_imdb_icon"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/detailled_movie_imdb_rating"
+        android:layout_marginEnd="@dimen/spacing_base"
+        android:layout_marginRight="@dimen/spacing_base"
+        android:layout_toLeftOf="@id/detailled_movie_imdb_rating"
+        android:layout_toStartOf="@id/detailled_movie_imdb_rating"
+        android:src="@drawable/icon_imdb"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/detailled_movie_country"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@id/detailled_movie_imdb_rating"
+        android:layout_marginTop="@dimen/spacing_base"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:text="@string/format_movie_country"
+        android:drawablePadding="@dimen/spacing_base"
+        android:drawableRight="@drawable/us"
+        android:drawableEnd="@drawable/us"/>
+</RelativeLayout>
