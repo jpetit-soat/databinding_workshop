@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:ellipsize="end"
-        tools:text="Avec : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..."
+        tools:text="Actor : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..."
         android:layout_above="@id/simple_movie_genre"
         android:layout_marginLeft="@dimen/spacing_base"
         android:layout_marginStart="@dimen/spacing_base"
