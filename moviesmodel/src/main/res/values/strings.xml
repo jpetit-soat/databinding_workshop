@@ -1,7 +1,8 @@
 <resources>
+
     <string name="app_name">Movies ans Series Database</string>
     <string name="format_movie_country">Country :</string>
-    <string name="field_filter_search_hint">Find a movie, a TV Show, a game...</string>
+    <string name="field_filter_search_hint">Find a movie, series…</string>
     <string name="filter_movie">Movie</string>
     <string name="filter_tv_show">TV Show</string>
     <string name="filter_game">Game</string>
@@ -9,4 +10,10 @@
     <string name="field_filter_genre_movie_hint">Movie genre</string>
     <string name="field_filter_genre_tv_show_hint">TV show genre</string>
     <string name="field_filter_genre_game_hint">Game genre</string>
+    <string name="simple_movie_actor_description">With : %1$s</string>
+
+
+    <string name="date_format_release" translatable="false">dd MMMM yyyy</string>
+
+
 </resources>
