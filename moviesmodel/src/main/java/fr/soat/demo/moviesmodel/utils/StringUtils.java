@@ -1,4 +1,4 @@
-package fr.soat.demo.moviesmodel;
+package fr.soat.demo.moviesmodel.utils;
 
 import android.text.TextUtils;
 

@@ -311,6 +311,29 @@
 "Response":"True"
 },
 {
+  "Title": "Doctor Who",
+  "Year": "2005–",
+  "Rated": "TV-PG",
+  "Released": "17 Mar 2006",
+  "Runtime": "45 min",
+  "Genre": "Adventure, Drama, Family",
+  "Director": "N/A",
+  "Writer": "Sydney Newman",
+  "Actors": "Matt Smith, David Tennant, Peter Capaldi, Jenna Coleman",
+  "Plot": "The further adventures of the time traveling alien adventurer and his companions.",
+  "Language": "English",
+  "Country": "UK, Canada",
+  "Awards": "106 wins & 161 nominations.",
+  "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BOTk0NTAwMDIwM15BMl5BanBnXkFtZTgwNzAwNDU5MDI@._V1_SX300.jpg",
+  "Metascore": "N/A",
+  "imdbRating": "8.8",
+  "imdbVotes": "154,384",
+  "imdbID": "tt0436992",
+  "Type": "series",
+  "totalSeasons": "10",
+  "Response": "True"
+},
+{
 "Title":"Game of Thrones",
 "Year":"2011–",
 "Rated":"TV-MA",
@@ -1096,8 +1119,30 @@
   "imdbID": "tt2015381",
   "Type": "movie",
   "Response": "True"
+},
+{
+  "Title": "Life of Pi",
+  "Year": "2012",
+  "Rated": "PG",
+  "Released": "21 Nov 2012",
+  "Runtime": "127 min",
+  "Genre": "Adventure, Drama, Fantasy",
+  "Director": "Ang Lee",
+  "Writer": "Yann Martel (novel), David Magee (screenplay)",
+  "Actors": "Suraj Sharma, Irrfan Khan, Ayush Tandon, Gautam Belur",
+  "Plot": "A young man who survives a disaster at sea is hurtled into an epic journey of adventure and discovery. While cast away, he forms an unexpected connection with another survivor: a fearsome Bengal tiger.",
+  "Language": "English, Tamil, French, Japanese, Hindi, Chinese",
+  "Country": "USA, Taiwan, UK",
+  "Awards": "Won 4 Oscars. Another 78 wins & 125 nominations.",
+  "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNTg2OTY2ODg5OF5BMl5BanBnXkFtZTcwODM5MTYxOA@@._V1_SX300.jpg",
+  "Metascore": "79",
+  "imdbRating": "7.9",
+  "imdbVotes": "459,307",
+  "imdbID": "tt0454876",
+  "Type": "movie",
+  "Response": "True"
 }
 ],
-"totalResults":"100",
+"totalResults":"49",
 "Response":"True"
 }

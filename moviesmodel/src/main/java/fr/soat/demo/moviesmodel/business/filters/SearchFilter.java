@@ -30,9 +30,13 @@ public class SearchFilter extends AbstractMovieSeriesFilter {
                 }
             }
         }
-        field = model.getWriters();
-        if(field != null && field.toLowerCase().contains(searchInput.toLowerCase())){
-            return true;
+        fields = model.getWriters();
+        if(fields != null){
+            for (String writer : fields) {
+                if(writer.toLowerCase().contains(searchInput.toLowerCase())){
+                    return true;
+                }
+            }
         }
         field = model.getDirector();
         return field != null && field.toLowerCase().contains(searchInput.toLowerCase());

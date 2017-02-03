@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import java.util.Date;
 import java.util.List;
 
-import fr.soat.demo.moviesmodel.DateUtils;
-import fr.soat.demo.moviesmodel.StringUtils;
+import fr.soat.demo.moviesmodel.utils.DateUtils;
+import fr.soat.demo.moviesmodel.utils.StringUtils;
 import fr.soat.demo.moviesmodel.dao.OMDBItem;
 
 /**

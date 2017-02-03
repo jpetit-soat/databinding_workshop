@@ -130,7 +130,7 @@
         android:layout_marginTop="@dimen/spacing_base"
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginStart="@dimen/spacing_large"
-        android:text="@string/format_movie_country"
+        android:text="@string/format_country_with_drawable"
         android:drawablePadding="@dimen/spacing_base"
         android:drawableRight="@drawable/us"
         android:drawableEnd="@drawable/us"/>

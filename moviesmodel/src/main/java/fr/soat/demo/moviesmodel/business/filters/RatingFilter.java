@@ -1,7 +1,5 @@
 package fr.soat.demo.moviesmodel.business.filters;
 
-import android.text.TextUtils;
-
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 
 /**
@@ -18,11 +16,7 @@ public class RatingFilter extends AbstractMovieSeriesFilter {
 
     @Override
     public boolean isMatchingFilter(MovieSeriesModel model) {
-        String imdbRating = model.getImdbRating();
-        if(!TextUtils.isEmpty(imdbRating) && !imdbRating.equalsIgnoreCase("N/A")){
-            float floatRating = Float.valueOf(imdbRating);
-            return floatRating >= rating;
-        }
-        return false;
+        float imdbRating = model.getImdbRating();
+        return imdbRating >= rating;
     }
 }

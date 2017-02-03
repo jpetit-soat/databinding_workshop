@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import fr.soat.demo.moviesmodel.DateUtils;
-import fr.soat.demo.moviesmodel.StringUtils;
+import fr.soat.demo.moviesmodel.utils.DateUtils;
+import fr.soat.demo.moviesmodel.utils.StringUtils;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.view_poster);
 
         initFields();
-
-//        new DownloadPosterASyncTask(this).execute();
 
         movieSeriesBusinessService = new MovieSeriesBusinessService(this);
         PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName("Guardians of the galaxy");
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         String genres = StringUtils.assembleString(posterModel.getGenres(), ", ");
         movieGenres.setText(genres);
 
-        String actorDescription = getString(R.string.simple_movie_actor_description, StringUtils.assembleString(posterModel.getActors(), ", "));
+        String actorDescription = getString(R.string.format_actors, StringUtils.assembleString(posterModel.getActors(), ", "));
         movieActors.setText(actorDescription);
 
         Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);

@@ -1,5 +1,10 @@
 package fr.soat.demo.moviesmodel.model;
 
+import android.text.TextUtils;
+
+import java.util.List;
+
+import fr.soat.demo.moviesmodel.utils.StringUtils;
 import fr.soat.demo.moviesmodel.dao.OMDBItem;
 
 /**
@@ -10,85 +15,117 @@ public class MovieSeriesModel {
 
     private final PosterModel posterModel;
 
-    private final String runtime;
-    private final String writers;
     private final String plot;
-    private final String languages;
-    private final String country;
-    private final String awards;
-    private final String imdbRating;
-    private final String imdbVotes;
-    private final String imdbID;
     private final String director;
-    private final String metascore;
-    private final String totalSeasons;
+    private final List<String> writers;
+    private final int runtime;
+    private final List<String> languages;
+    private final List<String> country;
+    private final String imdbID;
+    private final float imdbRating;
+    private final int imdbVotes;
+    private final int metascore;
+    private final int totalSeasons;
 
 
     public MovieSeriesModel(OMDBItem response) {
         posterModel = new PosterModel(response);
-        runtime = response.Runtime;
-        writers = response.Writer;
+
+        writers = StringUtils.createList(response.Writer, ", ");
         plot = response.Plot;
-        languages = response.Language;
-        country = response.Country;
-        awards = response.Awards;
-        imdbRating = response.imdbRating;
-        imdbVotes = response.imdbVotes;
+        languages = StringUtils.createList(response.Language, ", ");
+        country = StringUtils.createList(response.Country, ", ");
         imdbID = response.imdbID;
-        director = response.Director;
-        metascore = response.Metascore;
-        totalSeasons = response.totalSeasons;
+
+        if(!TextUtils.isEmpty(response.Director) && !response.Director.equalsIgnoreCase("N/A")){
+            director = response.Director;
+        } else {
+            director = null;
+        }
+
+        // IMDb votes
+        if(!TextUtils.isEmpty(response.imdbVotes) && !response.imdbVotes.equalsIgnoreCase("N/A")){
+            String imdbVotesFormatted = response.imdbVotes.replace(",", "");
+            imdbVotes = Integer.parseInt(imdbVotesFormatted);
+        } else {
+            imdbVotes = -1;
+        }
+
+        // IMDb Rating
+        if(!TextUtils.isEmpty(response.imdbRating) && !response.imdbRating.equalsIgnoreCase("N/A")){
+            imdbRating = Float.parseFloat(response.imdbRating);
+        } else {
+            imdbRating = -1;
+        }
+
+        // Metascore
+        if(!TextUtils.isEmpty(response.Metascore) && !response.Metascore.equalsIgnoreCase("N/A")){
+            metascore = Integer.parseInt(response.Metascore);
+        } else {
+            metascore = -1;
+        }
+
+        // Total Seasons
+        if(!TextUtils.isEmpty(response.totalSeasons) && !response.totalSeasons.equalsIgnoreCase("N/A")){
+            totalSeasons = Integer.parseInt(response.totalSeasons);
+        } else {
+            totalSeasons = -1;
+        }
+
+        // Runtime
+        if(!TextUtils.isEmpty(response.Runtime) && !response.Runtime.equalsIgnoreCase("N/A")){
+            String runtimeString = response.Runtime.replace(" min" ,"");
+            runtime = Integer.parseInt(runtimeString);
+        } else {
+            runtime = -1;
+        }
     }
 
     public PosterModel getPosterModel() {
         return posterModel;
     }
 
-    public String getRuntime() {
-        return runtime;
-    }
-
-    public String getWriters() {
-        return writers;
-    }
-
     public String getPlot() {
         return plot;
-    }
-
-    public String getLanguages() {
-        return languages;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getAwards() {
-        return awards;
-    }
-
-    public String getImdbRating() {
-        return imdbRating;
-    }
-
-    public String getImdbVotes() {
-        return imdbVotes;
-    }
-
-    public String getImdbID() {
-        return imdbID;
     }
 
     public String getDirector() {
         return director;
     }
 
-    public String getMetascore() {
+    public List<String> getWriters() {
+        return writers;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public List<String> getCountry() {
+        return country;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public float getImdbRating() {
+        return imdbRating;
+    }
+
+    public int getImdbVotes() {
+        return imdbVotes;
+    }
+
+    public int getMetascore() {
         return metascore;
     }
 
-    public String getTotalSeasons() {
+    public int getTotalSeasons() {
         return totalSeasons;
     }
 }
