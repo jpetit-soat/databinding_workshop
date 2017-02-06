@@ -10,13 +10,23 @@
 
 
     <string name="field_filter_search_hint">Find a movie, series…</string>
+    <string name="filter_all">All</string>
     <string name="filter_movie">Movie</string>
-    <string name="filter_tv_show">TV Show</string>
+    <string name="filter_series">Series</string>
     <string name="filter_game">Game</string>
+    <string name="field_filter_genre_all_hint">Genre</string>
     <string name="field_filter_genre_movie_hint">Movie genre</string>
-    <string name="field_filter_genre_tv_show_hint">TV show genre</string>
-    <string name="field_filter_genre_game_hint">Game genre</string>
+    <string name="field_filter_genre_series_hint">Series genre</string>
     <string name="imdb_score_label">IMDb Score :</string>
+
+    <plurals name="search_button_result">
+        <item quantity="one">@string/search_button_result_singular</item>
+        <item quantity="other">@string/search_button_result_plural</item>
+    </plurals>
+
+    <string name="search_button_no_result">No result</string>
+    <string name="search_button_result_singular">See the result</string>
+    <string name="search_button_result_plural">See the %1$d results</string>
 
 
     <string name="date_format_release" translatable="false">dd MMMM yyyy</string>

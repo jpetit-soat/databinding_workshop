@@ -19,7 +19,7 @@
         android:textColorHint="@android:color/secondary_text_light" />
 
     <RadioGroup
-        android:id="@+id/fview_filter_radiogroup"
+        android:id="@+id/view_filter_radiogroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view_filter_search_field"
@@ -31,25 +31,27 @@
         android:weightSum="3">
 
         <RadioButton
-            android:id="@+id/fview_filter_movie_button"
+            android:id="@+id/view_filter_all_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/filter_all" />
+
+        <RadioButton
+            android:id="@+id/view_filter_movie_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/filter_movie" />
 
         <RadioButton
-            android:id="@+id/fview_filter_tv_show_button"
+            android:id="@+id/view_filter_series_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/filter_tv_show" />
+            android:text="@string/filter_series" />
 
-        <RadioButton
-            android:id="@+id/fview_filter_game_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/filter_game" />
     </RadioGroup>
 
     <TextView
@@ -57,7 +59,7 @@
         style="@style/Base.TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fview_filter_radiogroup"
+        android:layout_below="@id/view_filter_radiogroup"
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_large"
@@ -71,11 +73,12 @@
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginStart="@dimen/spacing_large"
         android:max="10"
+        android:progress="0"
         android:layout_toEndOf="@id/view_filter_score_label"
         android:layout_toRightOf="@id/view_filter_score_label" />
 
     <RatingBar
-        android:id="@+id/detailled_movie_imdb_rating"
+        android:id="@+id/view_filter_imdb_rating"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,9 +87,12 @@
         android:layout_below="@id/view_filter_score_seekbar"
         android:layout_marginEnd="@dimen/spacing_large"
         android:layout_marginRight="@dimen/spacing_large"
+        android:layout_marginLeft="@dimen/spacing_base"
+        android:layout_marginStart="@dimen/spacing_base"
         android:layout_marginTop="@dimen/spacing_base"
-        android:paddingLeft="@dimen/spacing_base"
-        android:paddingRight="@dimen/spacing_base"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.5"
         android:rating="4.5" />
 
     <EditText
@@ -96,14 +102,15 @@
         android:layout_height="40dp"
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginRight="@dimen/spacing_large"
-        android:layout_below="@id/detailled_movie_imdb_rating"
+        android:layout_below="@id/view_filter_imdb_rating"
         android:layout_marginTop="@dimen/spacing_large"
         android:background="@drawable/background_white_rect_rounded"
-        tools:hint="@string/field_filter_genre_movie_hint"
+        android:hint="@string/field_filter_genre_all_hint"
         android:padding="@dimen/spacing_base"
         android:textColor="@android:color/black"
         android:textStyle="italic"
-        android:textColorHint="@android:color/secondary_text_light" />
+        android:textColorHint="@android:color/secondary_text_light"
+        android:inputType="text" />
 
     <ImageButton
         android:id="@+id/view_filter_add_genre_button"
@@ -151,7 +158,7 @@
         android:padding="@dimen/spacing_large"
         android:background="@drawable/background_white_borders_rounded"
         android:layout_marginTop="@dimen/spacing_xlarge"
-        tools:text="Voir les 15 résultats"/>
+        tools:text="See the 15 results"/>
 
 
 </RelativeLayout>
