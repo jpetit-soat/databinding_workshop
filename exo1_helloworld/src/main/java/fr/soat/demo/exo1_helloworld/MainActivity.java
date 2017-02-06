@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import fr.soat.demo.moviesmodel.utils.DateUtils;
-import fr.soat.demo.moviesmodel.utils.StringUtils;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
@@ -24,12 +22,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // TODO Replace with right method coming from DataBindingUtils
         setContentView(R.layout.view_poster);
 
+        // TODO This method is not used with DataBinding
         initFields();
 
+        // This code retrieve the wanted movie model and gives him a Drawable for the poster
         movieSeriesBusinessService = new MovieSeriesBusinessService(this);
         PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName("Guardians of the galaxy");
+        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
+        posterModel.setImageLoaded(drawableFromPoster);
+
+        // TODO The data loading must be made by the layout XML
         initData(posterModel);
     }
 
@@ -42,20 +48,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData(PosterModel posterModel) {
+        if(posterModel.getImageLoaded() != null){
+            moviePoster.setImageDrawable(posterModel.getImageLoaded());
+        }
+
         movieTitle.setText(posterModel.getTitle());
 
-        String dateString = DateUtils.formatDateToString(posterModel.getReleaseDate(), getString(R.string.date_format_release));
-        movieYear.setText(dateString);
+        movieYear.setText(posterModel.getFormattedDate(this));
 
-        String genres = StringUtils.assembleString(posterModel.getGenres(), ", ");
-        movieGenres.setText(genres);
+        movieGenres.setText(posterModel.getFormattedGenres());
 
-        String actorDescription = getString(R.string.format_actors, StringUtils.assembleString(posterModel.getActors(), ", "));
-        movieActors.setText(actorDescription);
+        movieActors.setText(posterModel.getFormattedActors(this));
 
-        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
-        if(drawableFromPoster != null){
-            moviePoster.setImageDrawable(drawableFromPoster);
-        }
+        // TODO Bonus
+        // If you feel great, try to make a binding
+        // without using the methods "getFormatted..."
     }
 }

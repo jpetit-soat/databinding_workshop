@@ -1,13 +1,16 @@
 package fr.soat.demo.moviesmodel.model;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
 import java.util.Date;
 import java.util.List;
 
+import fr.soat.demo.moviesmodel.R;
+import fr.soat.demo.moviesmodel.dao.OMDBItem;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
 import fr.soat.demo.moviesmodel.utils.StringUtils;
-import fr.soat.demo.moviesmodel.dao.OMDBItem;
 
 /**
  * Created by yann_huriez on 02/02/17.
@@ -26,6 +29,8 @@ public class PosterModel {
     private final List<String> actors;
     private final List<String> genres;
     private final String rated;
+
+    private Drawable imageLoaded;
 
 
     public PosterModel(OMDBItem response) {
@@ -91,5 +96,29 @@ public class PosterModel {
 
     public CulturalType getType() {
         return type;
+    }
+
+    public Drawable getImageLoaded() {
+        return imageLoaded;
+    }
+
+    public void setImageLoaded(Drawable imageLoaded) {
+        this.imageLoaded = imageLoaded;
+    }
+
+    // //////////////////
+    // Utility methods //
+    // /////////////// //
+
+    public String getFormattedGenres(){
+        return StringUtils.assembleString(actors, ", ");
+    }
+
+    public String getFormattedActors(Context context){
+        return context.getString(R.string.format_actors, StringUtils.assembleString(actors, ", "));
+    }
+
+    public String getFormattedDate(Context context){
+        return DateUtils.formatDateToString(getReleaseDate(), context.getString(R.string.date_format_release));
     }
 }
