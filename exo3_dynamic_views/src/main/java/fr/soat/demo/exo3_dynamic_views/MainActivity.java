@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 genres.add(newGenre);
                 filterGenresLabel.setText(StringUtils.assembleString(genres, ", "));
                 filterGenresLabel.setVisibility(VISIBLE);
+                filterGenresField.setText("");
                 updateSearchCount();
             }
         });
