@@ -2,10 +2,7 @@ package fr.soat.demo.exo2_viewmodel;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -105,21 +102,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initPosterData(PosterModel posterModel) {
+        // Theses methods aren't usefull anymore with DataBinding : we can reuse
+        // the PosterModel with the binded layout using the <include> tag
+
+        if(posterModel.getImageLoaded() != null){
+            moviePoster.setImageDrawable(posterModel.getImageLoaded());
+        }
+
         movieTitle.setText(posterModel.getTitle());
 
-        String dateString = DateUtils.formatDateToString(posterModel.getReleaseDate(), getString(R.string.date_format_release));
-        movieYear.setText(dateString);
+        movieYear.setText(posterModel.getFormattedDate(this));
 
-        String genres = StringUtils.assembleString(posterModel.getGenres(), ", ");
-        movieGenres.setText(genres);
+        movieGenres.setText(posterModel.getFormattedGenres());
 
-        String actorDescription = getString(R.string.format_actors, StringUtils.assembleString(posterModel.getActors(), ", "));
-        movieActors.setText(actorDescription);
-
-        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
-        if (drawableFromPoster != null) {
-            moviePoster.setImageDrawable(drawableFromPoster);
-        }
+        movieActors.setText(posterModel.getFormattedActors(this));
     }
 
     private void initDetailedInfo(final MovieSeriesModel movieModel) {
@@ -168,8 +164,6 @@ public class MainActivity extends AppCompatActivity {
             });
             float starRating = movieModel.getImdbRating() / 2.0f;
             detailedMovieImdbRating.setRating(starRating);
-            LayerDrawable stars = (LayerDrawable) detailedMovieImdbRating.getProgressDrawable();
-            stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
 
         } else {
             detailedMovieImdbRating.setVisibility(GONE);
@@ -191,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
             float starRating = movieModel.getMetascore() / 20.0f;
             detailedMovieMetacriticRating.setRating(starRating);
-            LayerDrawable stars = (LayerDrawable) detailedMovieMetacriticRating.getProgressDrawable();
-            stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
         } else {
             detailedMovieMetacriticRating.setVisibility(GONE);
             detailedMovieMetacriticIcon.setVisibility(GONE);
