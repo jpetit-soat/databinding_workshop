@@ -1,6 +1,7 @@
 package fr.soat.demo.exo2_viewmodel;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import fr.soat.demo.exo2_viewmodel.databinding.ViewDetailedMovieBinding;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
@@ -46,13 +48,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Loading of the movie model
+        movieSeriesBusinessService = new MovieSeriesBusinessService(this);
+        MovieSeriesModel movieModel = movieSeriesBusinessService.getMovieSeriesModelFromName("Pulp Fiction");
+
+        // Loading of the poster picture
+        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(movieModel.getPosterModel());
+        movieModel.getPosterModel().setImageLoaded(drawableFromPoster);
+
+
+        // TODO Uncomment when ViewModel is ready, and comment the other init method
+//        initWithDataBindingMethod(movieModel);
+        initWithTraditionnalMethod(movieModel);
+    }
+
+    private void initWithTraditionnalMethod(MovieSeriesModel movieModel){
         setContentView(R.layout.view_detailed_movie);
 
         initFields();
 
-        movieSeriesBusinessService = new MovieSeriesBusinessService(this);
-        MovieSeriesModel movieModel = movieSeriesBusinessService.getMovieSeriesModelFromName("Pulp Fiction");
         initData(movieModel);
+    }
+
+    private void initWithDataBindingMethod(MovieSeriesModel movieModel) {
+        ViewDetailedMovieBinding binding = DataBindingUtil.setContentView(this, R.layout.view_detailed_movie);
+
+        DetailledMovieViewModel detailledMovieViewModel = new DetailledMovieViewModel(movieModel);
+
+        binding.setModel(detailledMovieViewModel);
     }
 
     private void initFields() {
