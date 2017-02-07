@@ -22,7 +22,7 @@ import fr.soat.demo.moviesmodel.utils.StringUtils;
 public class MainActivity extends AppCompatActivity {
 
     // TODO Pass this boolean to "true" when ViewModel and binding is ready
-    public static final boolean USING_DATABINDING = true;
+    public static final boolean USING_DATABINDING = false;
 
     private ImageView moviePoster;
     private TextView movieTitle;
