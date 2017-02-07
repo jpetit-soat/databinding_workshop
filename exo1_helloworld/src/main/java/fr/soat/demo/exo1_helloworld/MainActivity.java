@@ -11,7 +11,7 @@ import fr.soat.demo.moviesmodel.model.PosterModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MovieSeriesBusinessService movieSeriesBusinessService;
+    public static final String MOVIE_NAME = "Guardians of the galaxy";
 
     private ImageView moviePoster;
     private TextView movieTitle;
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         initFields();
 
         // This code retrieve the wanted movie model and gives him a Drawable for the poster
-        movieSeriesBusinessService = new MovieSeriesBusinessService(this);
-        PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName("Guardians of the galaxy");
+        MovieSeriesBusinessService movieSeriesBusinessService = new MovieSeriesBusinessService(this);
+        PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName(MOVIE_NAME);
         Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
         posterModel.setImageLoaded(drawableFromPoster);
 

@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO Pass this boolean to "true" when ViewModel and binding is ready
     public static final boolean USING_DATABINDING = false;
 
+    public static final String MOVIE_NAME = "Pulp Fiction";
+
     private ImageView moviePoster;
     private TextView movieTitle;
     private TextView movieYear;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Loading of the movie model
         MovieSeriesBusinessService movieSeriesBusinessService = new MovieSeriesBusinessService(this);
-        MovieSeriesModel movieModel = movieSeriesBusinessService.getMovieSeriesModelFromName("Pulp Fiction");
+        MovieSeriesModel movieModel = movieSeriesBusinessService.getMovieSeriesModelFromName(MOVIE_NAME);
 
         // Loading of the poster picture
         Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(movieModel.getPosterModel());
