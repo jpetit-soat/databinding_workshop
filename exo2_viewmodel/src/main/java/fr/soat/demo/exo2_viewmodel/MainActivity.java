@@ -3,6 +3,7 @@ package fr.soat.demo.exo2_viewmodel;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ import static android.view.View.GONE;
 public class MainActivity extends AppCompatActivity {
 
     // TODO Pass this boolean to "true" when ViewModel and binding is ready
-    public static final boolean USING_DATABINDING = false;
+    public static final boolean USING_DATABINDING = true;
 
     private ImageView moviePoster;
     private TextView movieTitle;
@@ -38,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView detailedMovieDuration;
     private ImageView detailedMovieImdbIcon;
     private RatingBar detailedMovieImdbRating;
-    private ImageView detailedMovieMetacriticIcon;
-    private RatingBar detailedMovieMetacriticRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
         detailedMovieDuration = (TextView) findViewById(R.id.detailed_movie_duration);
         detailedMovieImdbIcon = (ImageView) findViewById(R.id.detailed_movie_imdb_icon);
         detailedMovieImdbRating = (RatingBar) findViewById(R.id.detailed_movie_imdb_rating);
-        detailedMovieMetacriticIcon = (ImageView) findViewById(R.id.detailed_movie_metacritic_rating_icon);
-        detailedMovieMetacriticRating = (RatingBar) findViewById(R.id.detailed_movie_metacritic_rating);
     }
 
     private void initData(MovieSeriesModel movieModel) {
@@ -119,42 +116,78 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initDetailedInfo(final MovieSeriesModel movieModel) {
-        detailedMoviePlot.setText(movieModel.getPlot());
+
+        // First we format the data coming from the MovieSeriesModel
+
+        String plot;
+        String director = null;
+        String writers = null;
+        @DrawableRes int countryDrawableRes;
+        String countryText;
+        String duration = null;
+        float rating = -1;
+
+        plot = movieModel.getPlot();
 
         if(movieModel.getDirector() != null){
-            detailedMovieDirector.setText(getString(R.string.format_director, movieModel.getDirector()));
+            director = getString(R.string.format_director, movieModel.getDirector());
+        }
+
+        // Writers
+        if (movieModel.getWriters() != null && !movieModel.getWriters().isEmpty()) {
+            writers = getString(R.string.format_writers, StringUtils.assembleString(movieModel.getWriters(), ", "));
+        }
+
+        // Country
+        String mainCountry = movieModel.getCountry() != null ? movieModel.getCountry().get(0) : null;
+        countryDrawableRes = DrawableUtils.getCountryDrawable(mainCountry);
+        if (countryDrawableRes > 0) {
+            countryText = getString(R.string.format_country_with_drawable);
+        } else {
+            countryText = getString(R.string.format_country_with_param, mainCountry);
+        }
+
+        // Runtime
+        int runtimeValue = movieModel.getRuntime();
+        if (runtimeValue > 0) {
+            String durationString = DateUtils.formatDuration(this, runtimeValue);
+            duration = getString(R.string.format_duration, durationString);
+        }
+
+        if(movieModel.getImdbRating() >= 0) {
+            rating = movieModel.getImdbRating() / 2.0f;
+        }
+
+
+
+        // Then we put theses formatted data into their respectives view
+
+        detailedMoviePlot.setText(plot);
+
+        if(director != null){
+            detailedMovieDirector.setText(director);
         } else {
             detailedMovieDirector.setVisibility(GONE);
         }
 
-        // Writers
-        String writers = StringUtils.assembleString(movieModel.getWriters(), ", ");
         if (writers != null) {
-            detailedMovieWriters.setText(getString(R.string.format_writers, writers));
+            detailedMovieWriters.setText(writers);
         } else {
             detailedMovieWriters.setVisibility(GONE);
         }
 
         // Country
-        String mainCountry = movieModel.getCountry() != null ? movieModel.getCountry().get(0) : null;
-        int countryDrawable = DrawableUtils.getCountryDrawable(mainCountry);
-        if (countryDrawable > 0) {
-            detailedMovieCountry.setCompoundDrawablesWithIntrinsicBounds(0, 0, countryDrawable, 0);
-            detailedMovieCountry.setText(R.string.format_country_with_drawable);
-        } else {
-            detailedMovieCountry.setText(getString(R.string.format_country_with_param, mainCountry));
-        }
+        detailedMovieCountry.setCompoundDrawablesWithIntrinsicBounds(0, 0, countryDrawableRes, 0);
+        detailedMovieCountry.setText(countryText);
 
-        // Runtime
-        int runtime = movieModel.getRuntime();
-        if (runtime > 0) {
-            String durationString = DateUtils.formatDuration(this, runtime);
-            detailedMovieDuration.setText(getString(R.string.format_duration, durationString));
+        // Duration
+        if (duration != null) {
+            detailedMovieDuration.setText(getString(R.string.format_duration, duration));
         } else {
             detailedMovieDuration.setVisibility(GONE);
         }
 
-        if(movieModel.getImdbRating() >= 0) {
+        if(rating >= 0) {
             detailedMovieImdbIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -162,9 +195,7 @@ public class MainActivity extends AppCompatActivity {
                     PopupUtils.showPopupForVotes(MainActivity.this, view, movieModel.getImdbVotes());
                 }
             });
-            float starRating = movieModel.getImdbRating() / 2.0f;
-            detailedMovieImdbRating.setRating(starRating);
-
+            detailedMovieImdbRating.setRating(rating);
         } else {
             detailedMovieImdbRating.setVisibility(GONE);
             detailedMovieImdbIcon.setVisibility(GONE);
