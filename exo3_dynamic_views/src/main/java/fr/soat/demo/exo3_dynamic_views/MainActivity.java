@@ -1,8 +1,6 @@
 package fr.soat.demo.exo3_dynamic_views;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.soat.demo.exo3_dynamic_views.databinding.ViewFiltersBinding;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.business.filters.AbstractMovieSeriesFilter;
 import fr.soat.demo.moviesmodel.business.filters.GenresFilter;
@@ -35,6 +34,9 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
+
+    // TODO Pass this boolean to "true" when ViewModel and binding are ready
+    public static final boolean USING_DATABINDING = false;
 
     private MovieSeriesBusinessService movieSeriesBusinessService;
 
@@ -60,13 +62,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_filters);
 
         movieSeriesBusinessService = new MovieSeriesBusinessService(this);
 
+        if(USING_DATABINDING){
+            initWithTraditionnalMethod();
+        } else {
+            initWithDataBindingMethod();
+        }
+    }
+
+    private void initWithTraditionnalMethod(){
+        setContentView(R.layout.view_filters);
+
         initFields();
+
+        // Init different listener to make the view dynamic and select some filters
         initListeners();
+
+        // Update the count number of movies / series found using the filters
         updateSearchCount();
+    }
+
+    private void initWithDataBindingMethod() {
+        ViewFiltersBinding binding = DataBindingUtil.setContentView(this, R.layout.view_filters);
+
+        FiltersViewModel filtersViewModel = new FiltersViewModel(this);
+
+        binding.setModel(filtersViewModel);
     }
 
     private void initFields() {
@@ -74,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         filterScoreSeekbar = (SeekBar) findViewById(R.id.view_filter_score_seekbar);
         filterRating = (RatingBar) findViewById(R.id.view_filter_imdb_rating);
-        LayerDrawable stars = (LayerDrawable) filterRating.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
 
         filterGenresField = (EditText) findViewById(R.id.view_filter_genre_field);
         filterGenresLabel = (TextView) findViewById(R.id.view_filter_genres_label);

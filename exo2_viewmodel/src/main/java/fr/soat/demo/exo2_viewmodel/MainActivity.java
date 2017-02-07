@@ -21,7 +21,7 @@ import fr.soat.demo.moviesmodel.utils.StringUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO Pass this boolean to "true" when ViewModel and binding is ready
+    // TODO Pass this boolean to "true" when ViewModel and binding are ready
     public static final boolean USING_DATABINDING = false;
 
     public static final String MOVIE_NAME = "Pulp Fiction";

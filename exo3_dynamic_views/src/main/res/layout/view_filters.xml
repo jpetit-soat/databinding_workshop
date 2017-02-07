@@ -1,164 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/spacing_large"
-    android:background="@android:color/black">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/view_filter_search_field"
-        style="@style/Base.Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="@dimen/spacing_large"
-        android:background="@drawable/background_white_rect_rounded"
-        android:hint="@string/field_filter_search_hint"
-        android:padding="@dimen/spacing_base"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/secondary_text_light" />
+    <data>
+        <variable
+            name="model"
+            type="fr.soat.demo.exo3_dynamic_views.FiltersViewModel"/>
+    </data>
 
-    <RadioGroup
-        android:id="@+id/view_filter_radiogroup"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_filter_search_field"
-        android:orientation="horizontal"
-        android:paddingEnd="@dimen/spacing_large"
-        android:paddingLeft="@dimen/spacing_large"
-        android:paddingRight="@dimen/spacing_large"
-        android:paddingStart="@dimen/spacing_large"
-        android:weightSum="3">
+        android:background="@android:color/black"
+        android:paddingBottom="@dimen/spacing_large">
 
-        <RadioButton
-            android:id="@+id/view_filter_all_button"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/view_filter_search_field"
+            style="@style/Base.Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/spacing_large"
+            android:background="@drawable/background_white_rect_rounded"
+            android:hint="@string/field_filter_search_hint"
+            android:padding="@dimen/spacing_base"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/secondary_text_light" />
+
+        <RadioGroup
+            android:id="@+id/view_filter_radiogroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="@string/filter_all" />
+            android:layout_below="@id/view_filter_search_field"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/spacing_large"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large"
+            android:paddingStart="@dimen/spacing_large"
+            android:weightSum="3">
 
-        <RadioButton
-            android:id="@+id/view_filter_movie_button"
-            android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/view_filter_all_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/filter_all" />
+
+            <RadioButton
+                android:id="@+id/view_filter_movie_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/filter_movie" />
+
+            <RadioButton
+                android:id="@+id/view_filter_series_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/filter_series" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/view_filter_score_label"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/filter_movie" />
+            android:layout_below="@id/view_filter_radiogroup"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="@string/imdb_score_label" />
 
-        <RadioButton
-            android:id="@+id/view_filter_series_button"
-            android:layout_width="0dp"
+        <SeekBar
+            android:id="@+id/view_filter_score_seekbar"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/filter_series" />
+            android:layout_alignBottom="@id/view_filter_score_label"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_toEndOf="@id/view_filter_score_label"
+            android:layout_toRightOf="@id/view_filter_score_label"
+            android:max="10"
+            android:progress="0" />
 
-    </RadioGroup>
+        <RatingBar
+            android:id="@+id/view_filter_imdb_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/view_filter_score_seekbar"
+            android:layout_alignStart="@id/view_filter_score_seekbar"
+            android:layout_below="@id/view_filter_score_seekbar"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_marginTop="@dimen/spacing_base"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.5"
+            android:stepSize="0.5" />
 
-    <TextView
-        android:id="@+id/view_filter_score_label"
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_filter_radiogroup"
-        android:layout_marginLeft="@dimen/spacing_large"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:text="@string/imdb_score_label" />
+        <EditText
+            android:id="@+id/view_filter_genre_field"
+            style="@style/Base.Widget.AppCompat.EditText"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/view_filter_imdb_rating"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/background_white_rect_rounded"
+            android:hint="@string/field_filter_genre_all_hint"
+            android:inputType="text"
+            android:padding="@dimen/spacing_base"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/secondary_text_light"
+            android:textStyle="italic" />
 
-    <SeekBar
-        android:id="@+id/view_filter_score_seekbar"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/view_filter_score_label"
-        android:layout_marginLeft="@dimen/spacing_large"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:max="10"
-        android:progress="0"
-        android:layout_toEndOf="@id/view_filter_score_label"
-        android:layout_toRightOf="@id/view_filter_score_label" />
+        <ImageButton
+            android:id="@+id/view_filter_add_genre_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@id/view_filter_genre_field"
+            android:layout_toEndOf="@id/view_filter_genre_field"
+            android:layout_toRightOf="@id/view_filter_genre_field"
+            android:background="@drawable/background_white_borders_rounded"
+            android:src="@drawable/ic_plus_1"
+            tools:ignore="ContentDescription" />
 
-    <RatingBar
-        android:id="@+id/view_filter_imdb_rating"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/view_filter_score_seekbar"
-        android:layout_alignStart="@id/view_filter_score_seekbar"
-        android:layout_below="@id/view_filter_score_seekbar"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:layout_marginRight="@dimen/spacing_large"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:layout_marginTop="@dimen/spacing_base"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:rating="4.5" />
+        <ImageButton
+            android:id="@+id/view_filter_delete_genres_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@id/view_filter_add_genre_button"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_toEndOf="@id/view_filter_add_genre_button"
+            android:layout_toRightOf="@id/view_filter_add_genre_button"
+            android:background="@drawable/background_white_borders_rounded"
+            android:src="@drawable/ic_delete"
+            tools:ignore="ContentDescription" />
 
-    <EditText
-        android:id="@+id/view_filter_genre_field"
-        style="@style/Base.Widget.AppCompat.EditText"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="@dimen/spacing_large"
-        android:layout_marginRight="@dimen/spacing_large"
-        android:layout_below="@id/view_filter_imdb_rating"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:background="@drawable/background_white_rect_rounded"
-        android:hint="@string/field_filter_genre_all_hint"
-        android:padding="@dimen/spacing_base"
-        android:textColor="@android:color/black"
-        android:textStyle="italic"
-        android:textColorHint="@android:color/secondary_text_light"
-        android:inputType="text" />
+        <TextView
+            android:id="@+id/view_filter_genres_label"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_filter_genre_field"
+            android:layout_marginLeft="@dimen/spacing_xlarge"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_base"
+            android:textStyle="italic"
+            tools:text="Action, Adventure, Comedy" />
 
-    <ImageButton
-        android:id="@+id/view_filter_add_genre_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_toRightOf="@id/view_filter_genre_field"
-        android:layout_toEndOf="@id/view_filter_genre_field"
-        android:layout_alignTop="@id/view_filter_genre_field"
-        android:src="@drawable/ic_plus_1"
-        android:background="@drawable/background_white_borders_rounded"
-        tools:ignore="ContentDescription" />
+        <Button
+            android:id="@+id/view_filter_search_button"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_filter_genres_label"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            android:background="@drawable/background_white_borders_rounded"
+            android:padding="@dimen/spacing_large"
+            tools:text="See the 15 results" />
 
-    <ImageButton
-        android:id="@+id/view_filter_delete_genres_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_toRightOf="@id/view_filter_add_genre_button"
-        android:layout_toEndOf="@id/view_filter_add_genre_button"
-        android:layout_alignTop="@id/view_filter_add_genre_button"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:src="@drawable/ic_delete"
-        android:background="@drawable/background_white_borders_rounded"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/view_filter_genres_label"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textStyle="italic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_filter_genre_field"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginTop="@dimen/spacing_base"
-        tools:text="Action, Adventure, Comedy" />
-
-    <Button
-        android:id="@+id/view_filter_search_button"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_filter_genres_label"
-        android:layout_centerHorizontal="true"
-        android:padding="@dimen/spacing_large"
-        android:background="@drawable/background_white_borders_rounded"
-        android:layout_marginTop="@dimen/spacing_xlarge"
-        tools:text="See the 15 results"/>
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

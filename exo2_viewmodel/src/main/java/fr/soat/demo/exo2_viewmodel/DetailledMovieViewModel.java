@@ -18,7 +18,7 @@ public class DetailledMovieViewModel {
         this.movieModel = movieModel;
     }
 
-    // TODO Create methods here to allow the layout to access formatted data
+    // TODO Create methods here to allow the layout to manipulate data
 
 
 }
