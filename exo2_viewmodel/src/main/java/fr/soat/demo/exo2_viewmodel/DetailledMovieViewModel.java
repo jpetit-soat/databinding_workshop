@@ -1,5 +1,7 @@
 package fr.soat.demo.exo2_viewmodel;
 
+import android.content.Context;
+
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 
 /**
@@ -9,10 +11,14 @@ import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 public class DetailledMovieViewModel {
 
     private final MovieSeriesModel movieModel;
+    private final Context context;
 
-    public DetailledMovieViewModel(MovieSeriesModel movieModel) {
+    public DetailledMovieViewModel(Context context, MovieSeriesModel movieModel) {
+        this.context = context;
         this.movieModel = movieModel;
     }
 
     // TODO Create methods here to allow the layout to access formatted data
+
+
 }

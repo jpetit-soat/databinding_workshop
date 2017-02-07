@@ -24,7 +24,8 @@ import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MovieSeriesBusinessService movieSeriesBusinessService;
+    // TODO Pass this boolean to "true" when ViewModel and binding is ready
+    public static final boolean USING_DATABINDING = false;
 
     private ImageView moviePoster;
     private TextView movieTitle;
@@ -47,17 +48,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Loading of the movie model
-        movieSeriesBusinessService = new MovieSeriesBusinessService(this);
+        MovieSeriesBusinessService movieSeriesBusinessService = new MovieSeriesBusinessService(this);
         MovieSeriesModel movieModel = movieSeriesBusinessService.getMovieSeriesModelFromName("Pulp Fiction");
 
         // Loading of the poster picture
         Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(movieModel.getPosterModel());
         movieModel.getPosterModel().setImageLoaded(drawableFromPoster);
 
-
-        // TODO Uncomment when ViewModel is ready, and comment the other init method
-//        initWithDataBindingMethod(movieModel);
-        initWithTraditionnalMethod(movieModel);
+        if(USING_DATABINDING){
+            initWithDataBindingMethod(movieModel);
+        } else {
+            initWithTraditionnalMethod(movieModel);
+        }
     }
 
     private void initWithTraditionnalMethod(MovieSeriesModel movieModel){
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void initWithDataBindingMethod(MovieSeriesModel movieModel) {
         ViewDetailedMovieBinding binding = DataBindingUtil.setContentView(this, R.layout.view_detailed_movie);
 
-        DetailledMovieViewModel detailledMovieViewModel = new DetailledMovieViewModel(movieModel);
+        DetailledMovieViewModel detailledMovieViewModel = new DetailledMovieViewModel(this, movieModel);
 
         binding.setModel(detailledMovieViewModel);
     }
