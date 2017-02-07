@@ -19,8 +19,6 @@ import fr.soat.demo.moviesmodel.utils.DrawableUtils;
 import fr.soat.demo.moviesmodel.utils.PopupUtils;
 import fr.soat.demo.moviesmodel.utils.StringUtils;
 
-import static android.view.View.GONE;
-
 public class MainActivity extends AppCompatActivity {
 
     // TODO Pass this boolean to "true" when ViewModel and binding is ready
@@ -127,8 +125,10 @@ public class MainActivity extends AppCompatActivity {
         String duration = null;
         float rating = -1;
 
+        // Plot
         plot = movieModel.getPlot();
 
+        // Director
         if(movieModel.getDirector() != null){
             director = getString(R.string.format_director, movieModel.getDirector());
         }
@@ -154,51 +154,27 @@ public class MainActivity extends AppCompatActivity {
             duration = getString(R.string.format_duration, durationString);
         }
 
+        // Rating
         if(movieModel.getImdbRating() >= 0) {
             rating = movieModel.getImdbRating() / 2.0f;
         }
 
 
-
         // Then we put theses formatted data into their respectives view
 
         detailedMoviePlot.setText(plot);
-
-        if(director != null){
-            detailedMovieDirector.setText(director);
-        } else {
-            detailedMovieDirector.setVisibility(GONE);
-        }
-
-        if (writers != null) {
-            detailedMovieWriters.setText(writers);
-        } else {
-            detailedMovieWriters.setVisibility(GONE);
-        }
-
-        // Country
+        detailedMovieDirector.setText(director);
+        detailedMovieWriters.setText(writers);
         detailedMovieCountry.setCompoundDrawablesWithIntrinsicBounds(0, 0, countryDrawableRes, 0);
         detailedMovieCountry.setText(countryText);
-
-        // Duration
-        if (duration != null) {
-            detailedMovieDuration.setText(getString(R.string.format_duration, duration));
-        } else {
-            detailedMovieDuration.setVisibility(GONE);
-        }
-
-        if(rating >= 0) {
-            detailedMovieImdbIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // This code show a popup below the view with the number of voting
-                    PopupUtils.showPopupForVotes(MainActivity.this, view, movieModel.getImdbVotes());
-                }
-            });
-            detailedMovieImdbRating.setRating(rating);
-        } else {
-            detailedMovieImdbRating.setVisibility(GONE);
-            detailedMovieImdbIcon.setVisibility(GONE);
-        }
+        detailedMovieDuration.setText(getString(R.string.format_duration, duration));
+        detailedMovieImdbRating.setRating(rating);
+        detailedMovieImdbIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This code show a popup below the view with the number of voting
+                PopupUtils.showPopupForVotes(MainActivity.this, view, movieModel.getImdbVotes());
+            }
+        });
     }
 }
