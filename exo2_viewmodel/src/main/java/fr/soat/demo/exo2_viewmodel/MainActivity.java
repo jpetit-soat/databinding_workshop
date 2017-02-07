@@ -1,9 +1,7 @@
 package fr.soat.demo.exo2_viewmodel;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -171,27 +169,5 @@ public class MainActivity extends AppCompatActivity {
             detailedMovieImdbRating.setVisibility(GONE);
             detailedMovieImdbIcon.setVisibility(GONE);
         }
-
-        if(movieModel.getImdbRating() >= 0) {
-            View.OnClickListener onClickListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // This code redirect to the web main page of Metacritic
-                    String url = getString(R.string.metacritic_web_adress);
-                    final Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(webIntent);
-                }
-            };
-            detailedMovieMetacriticIcon.setOnClickListener(onClickListener);
-            detailedMovieMetacriticRating.setOnClickListener(onClickListener);
-
-            float starRating = movieModel.getMetascore() / 20.0f;
-            detailedMovieMetacriticRating.setRating(starRating);
-        } else {
-            detailedMovieMetacriticRating.setVisibility(GONE);
-            detailedMovieMetacriticIcon.setVisibility(GONE);
-        }
-
-
     }
 }
