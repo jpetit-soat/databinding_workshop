@@ -113,7 +113,7 @@
             android:layout_marginRight="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_large"
             android:background="@drawable/background_white_rect_rounded"
-            android:hint="@string/field_filter_genre_all_hint"
+            android:hint="@string/field_filter_genre_hint"
             android:inputType="text"
             android:padding="@dimen/spacing_base"
             android:textColor="@android:color/black"

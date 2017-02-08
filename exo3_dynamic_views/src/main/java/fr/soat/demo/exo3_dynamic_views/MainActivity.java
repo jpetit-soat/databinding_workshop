@@ -151,20 +151,7 @@ public class MainActivity extends AppCompatActivity {
         filterRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                switch (radioGroup.getCheckedRadioButtonId()){
-                    case R.id.view_filter_all_button:
-                        selectedType = null;
-                        filterGenresField.setHint(R.string.field_filter_genre_all_hint);
-                        break;
-                    case R.id.view_filter_movie_button:
-                        selectedType = CulturalType.MOVIE;
-                        filterGenresField.setHint(R.string.field_filter_genre_movie_hint);
-                        break;
-                    case R.id.view_filter_series_button:
-                        selectedType = CulturalType.SERIES;
-                        filterGenresField.setHint(R.string.field_filter_genre_series_hint);
-                        break;
-                }
+                selectedType = convertButtonIdToCulturalType(radioGroup.getCheckedRadioButtonId());
                 updateSearchCount();
             }
         });
@@ -191,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
                 updateSearchCount();
             }
         });
-
     }
 
     private void updateSearchCount() {
@@ -225,5 +211,30 @@ public class MainActivity extends AppCompatActivity {
             resultCount = getResources().getQuantityString(R.plurals.search_button_result, filteredMovieSeries.size(), filteredMovieSeries.size());
         }
         filterSearchButton.setText(resultCount);
+    }
+
+
+    public int convertCulturalTypeToButtonId(CulturalType type){
+        if(type != null) {
+            switch (type) {
+                case MOVIE:
+                    return R.id.view_filter_movie_button;
+                case SERIES:
+                    return R.id.view_filter_series_button;
+            }
+        }
+        return R.id.view_filter_all_button;
+    }
+
+    public CulturalType convertButtonIdToCulturalType(int buttonId){
+        switch (buttonId){
+            case R.id.view_filter_all_button:
+                return null;
+            case R.id.view_filter_movie_button:
+                return CulturalType.MOVIE;
+            case R.id.view_filter_series_button:
+                return CulturalType.SERIES;
+        }
+        return null;
     }
 }

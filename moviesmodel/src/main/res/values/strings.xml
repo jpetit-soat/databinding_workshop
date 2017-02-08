@@ -14,9 +14,7 @@
     <string name="filter_movie">Movie</string>
     <string name="filter_series">Series</string>
     <string name="filter_game">Game</string>
-    <string name="field_filter_genre_all_hint">Genre</string>
-    <string name="field_filter_genre_movie_hint">Movie genre</string>
-    <string name="field_filter_genre_series_hint">Series genre</string>
+    <string name="field_filter_genre_hint">Genre</string>
     <string name="imdb_score_label">IMDb Score :</string>
 
     <plurals name="search_button_result">
