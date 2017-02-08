@@ -24,22 +24,22 @@
             android:background="@drawable/background_white_rect_rounded"
             android:hint="@string/field_filter_search_hint"
             android:padding="@dimen/spacing_base"
+            android:text="@={model.searchString}"
             android:textColor="@android:color/black"
-            android:textColorHint="@android:color/secondary_text_light"
-            tools:text="Star" />
+            android:textColorHint="@android:color/secondary_text_light" />
 
         <RadioGroup
             android:id="@+id/view_filter_global_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/view_filter_search_field"
+            android:checkedButton="@={model.selectedType}"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/spacing_large"
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
-            android:weightSum="3"
-            tools:checkedButton="@+id/view_filter_movie_button">
+            android:weightSum="3">
 
             <RadioButton
                 android:id="@+id/view_filter_all_button"
@@ -85,7 +85,7 @@
             android:layout_toEndOf="@id/view_filter_score_label"
             android:layout_toRightOf="@id/view_filter_score_label"
             android:max="10"
-            tools:progress="4" />
+            android:progress="@={model.ratingProgress}" />
 
         <RatingBar
             android:id="@+id/view_filter_imdb_rating"
@@ -102,8 +102,8 @@
             android:layout_marginTop="@dimen/spacing_base"
             android:isIndicator="true"
             android:numStars="5"
-            android:stepSize="0.5"
-            tools:rating="2" />
+            android:rating="@{model.rating}"
+            android:stepSize="0.5" />
 
         <Button
             android:id="@+id/view_filter_result_button"
@@ -115,6 +115,7 @@
             android:layout_marginTop="@dimen/spacing_xlarge"
             android:background="@drawable/background_white_borders_rounded"
             android:padding="@dimen/spacing_large"
+            android:text="@{model.resultCount}"
             tools:text="See the 15 results" />
 
     </RelativeLayout>

@@ -15,7 +15,7 @@
     <string name="filter_series">Series</string>
     <string name="filter_game">Game</string>
     <string name="field_filter_genre_hint">Genre</string>
-    <string name="imdb_score_label">IMDb Score :</string>
+    <string name="imdb_score_label">IMDb min score :</string>
 
     <plurals name="search_button_result">
         <item quantity="one">@string/search_button_result_singular</item>

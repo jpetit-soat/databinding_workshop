@@ -7,14 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +19,11 @@ import java.util.List;
 import fr.soat.demo.exo3_dynamic_views.databinding.ViewFiltersBinding;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.business.filters.AbstractMovieSeriesFilter;
-import fr.soat.demo.moviesmodel.business.filters.GenresFilter;
 import fr.soat.demo.moviesmodel.business.filters.RatingFilter;
 import fr.soat.demo.moviesmodel.business.filters.SearchFilter;
 import fr.soat.demo.moviesmodel.business.filters.TypeFilter;
 import fr.soat.demo.moviesmodel.model.CulturalType;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
-import fr.soat.demo.moviesmodel.utils.StringUtils;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,19 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar filterScoreSeekbar;
     private RatingBar filterRating;
 
-    private EditText filterGenresField;
-    private TextView filterGenresLabel;
-    private ImageButton filterAddButton;
-    private ImageButton filterDeleteButton;
-
     private RadioGroup filterRadioGroup;
 
     private Button filterSearchButton;
 
     private String searchString = null;
-    private List<String> genres = new ArrayList<>();
     private CulturalType selectedType = null;
-    private float rating = -1;
+    private float rating = 0.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         movieSeriesBusinessService = new MovieSeriesBusinessService(this);
 
         if(USING_DATABINDING){
-            initWithTraditionnalMethod();
-        } else {
             initWithDataBindingMethod();
+        } else {
+            initWithTraditionnalMethod();
         }
     }
 
@@ -98,14 +84,9 @@ public class MainActivity extends AppCompatActivity {
         filterScoreSeekbar = (SeekBar) findViewById(R.id.view_filter_score_seekbar);
         filterRating = (RatingBar) findViewById(R.id.view_filter_imdb_rating);
 
-        filterGenresField = (EditText) findViewById(R.id.view_filter_genre_field);
-        filterGenresLabel = (TextView) findViewById(R.id.view_filter_genres_label);
-        filterAddButton = (ImageButton) findViewById(R.id.view_filter_add_genre_button);
-        filterDeleteButton = (ImageButton) findViewById(R.id.view_filter_delete_genres_button);
+        filterRadioGroup = (RadioGroup) findViewById(R.id.view_filter_global_radio_group);
 
-        filterRadioGroup = (RadioGroup) findViewById(R.id.view_filter_radiogroup);
-
-        filterSearchButton = (Button) findViewById(R.id.view_filter_search_button);
+        filterSearchButton = (Button) findViewById(R.id.view_filter_result_button);
     }
 
     private void initListeners() {
@@ -128,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Rating
         filterRating.setRating(0.0f);
+        filterScoreSeekbar.setProgress(0);
         filterScoreSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
@@ -148,33 +130,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Type
+        filterRadioGroup.check(convertCulturalTypeToButtonId(selectedType));
         filterRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 selectedType = convertButtonIdToCulturalType(radioGroup.getCheckedRadioButtonId());
-                updateSearchCount();
-            }
-        });
-
-        // Genres
-        filterGenresLabel.setVisibility(GONE);
-        filterAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newGenre = filterGenresField.getText().toString();
-                genres.add(newGenre);
-                filterGenresLabel.setText(StringUtils.assembleString(genres, ", "));
-                filterGenresLabel.setVisibility(VISIBLE);
-                filterGenresField.setText("");
-                updateSearchCount();
-            }
-        });
-
-        filterDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                genres.clear();
-                filterGenresLabel.setVisibility(GONE);
                 updateSearchCount();
             }
         });
@@ -196,11 +156,6 @@ public class MainActivity extends AppCompatActivity {
         // Rating
         if(rating >= 0){
             filters.add(new RatingFilter(rating));
-        }
-
-        // Genres
-        if(!genres.isEmpty()){
-            filters.add(new GenresFilter(genres));
         }
 
         List<MovieSeriesModel> filteredMovieSeries = movieSeriesBusinessService.getFilteredMovieSeries(filters);
