@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_small">
+
+    <ImageView
+        android:id="@+id/pg_rating_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_base"
+        android:layout_marginStart="@dimen/spacing_base"
+        tools:src="@drawable/ic_rated_pg"
+        android:layout_marginTop="@dimen/spacing_base"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/pg_rating_advertising"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textStyle="italic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_base"
+        android:layout_marginStart="@dimen/spacing_base"
+        android:layout_weight="1"
+        tools:textColor="@color/rated_green"
+        tools:text="@string/PG_rating_advertising_green"/>
+
+</LinearLayout>

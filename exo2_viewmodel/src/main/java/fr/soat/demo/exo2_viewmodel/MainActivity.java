@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO Pass this boolean to "true" when ViewModel and binding are ready
     public static final boolean USING_DATABINDING = false;
 
-    public static final String MOVIE_NAME = "Pulp Fiction";
+    public static final String MOVIE_NAME = "The Dark Knight";
 
     private ImageView moviePoster;
     private TextView movieTitle;
