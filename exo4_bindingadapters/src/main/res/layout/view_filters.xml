@@ -115,6 +115,7 @@
             android:layout_marginTop="@dimen/spacing_xlarge"
             android:background="@drawable/background_white_borders_rounded"
             android:padding="@dimen/spacing_large"
+            android:onClick="@{() -> model.onResultButtonClicked()}"
             android:text="@{model.resultCount}"
             tools:text="See the 15 results" />
 

@@ -15,7 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import fr.soat.demo.exo4_bindingadapters.databinding.ViewFilterAndDetailledMovieBinding;
-import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailledMovieViewModel;
+import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.CulturalType;
@@ -44,9 +44,14 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     // This callback method comes from FilterViewModel.Listener
     @Override
     public void onShowMovieSeries(MovieSeriesModel movieOrSeriesModel) {
-        DetailledMovieViewModel detailledMovieViewModel = new DetailledMovieViewModel(this, movieOrSeriesModel);
+        DetailedMovieViewModel detailedMovieViewModel = new DetailedMovieViewModel(this, movieOrSeriesModel);
 
-        binding.setMovieModel(detailledMovieViewModel);
+        binding.setMovieModel(detailedMovieViewModel);
+
+        // The data contained in the ViewModel are scheduled to update the view before the next frame.
+        // This method allows to update the view immediately, to make the changes from "updateViewWithDetails"
+        // happens after the data binding.
+        binding.executePendingBindings();
 
         // TODO The code contained in this method can entirely be replace with BindingAdapters
         updateViewWithDetails(movieOrSeriesModel);

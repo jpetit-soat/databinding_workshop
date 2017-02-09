@@ -18,7 +18,7 @@ import fr.soat.demo.moviesmodel.utils.StringUtils;
  * Created by yann_huriez on 06/02/17.
  */
 
-public class DetailledMovieViewModel {
+public class DetailedMovieViewModel {
 
     private final MovieSeriesModel movieModel;
     private final Context context;
@@ -31,7 +31,7 @@ public class DetailledMovieViewModel {
     public String duration = null;
     public float rating = -1;
 
-    public DetailledMovieViewModel(Context context, MovieSeriesModel movieModel) {
+    public DetailedMovieViewModel(Context context, MovieSeriesModel movieModel) {
         this.context = context;
         this.movieModel = movieModel;
 

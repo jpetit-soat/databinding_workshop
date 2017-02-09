@@ -6,12 +6,13 @@
     <data>
         <variable
             name="model"
-            type="fr.soat.demo.exo4_bindingadapters.viewmodel.DetailledMovieViewModel"/>
+            type="fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel"/>
     </data>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_large">
 
         <include
             android:id="@+id/simple_movie_layout"
@@ -26,7 +27,8 @@
         <fr.soat.demo.moviesmodel.utils.MovieRatingView
             android:id="@+id/detailed_movie_rating"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/detailed_movie_plot"

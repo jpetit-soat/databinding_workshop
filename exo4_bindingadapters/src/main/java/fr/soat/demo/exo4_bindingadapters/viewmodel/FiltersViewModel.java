@@ -33,6 +33,8 @@ public class FiltersViewModel extends BaseObservable {
     private CulturalType selectedType = null;
     private int ratingProgress = 0;
 
+    private final List<MovieSeriesModel> filteredMovieSeries = new ArrayList<>();
+
     public FiltersViewModel(Context context, Listener listener) {
         this.context = context;
         this.listener = listener;
@@ -91,11 +93,8 @@ public class FiltersViewModel extends BaseObservable {
             filters.add(new RatingFilter(ratingProgress));
         }
 
-        List<MovieSeriesModel> filteredMovieSeries = movieSeriesBusinessService.getFilteredMovieSeries(filters);
-
-        if(listener != null && !filteredMovieSeries.isEmpty()){
-            listener.onShowMovieSeries(filteredMovieSeries.get(0));
-        }
+        filteredMovieSeries.clear();
+        filteredMovieSeries.addAll(movieSeriesBusinessService.getFilteredMovieSeries(filters));
 
         String resultCount;
         if(filteredMovieSeries.isEmpty()){
@@ -107,7 +106,9 @@ public class FiltersViewModel extends BaseObservable {
     }
 
     public void onResultButtonClicked(){
-
+        if(listener != null && !filteredMovieSeries.isEmpty()){
+            listener.onShowMovieSeries(filteredMovieSeries.get(0));
+        }
     }
 
     private int convertCulturalTypeToButtonId(CulturalType type){

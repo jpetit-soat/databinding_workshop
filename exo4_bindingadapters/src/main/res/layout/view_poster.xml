@@ -41,6 +41,7 @@
         <TextView
             android:id="@+id/simple_movie_year"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/simple_movie_title"

@@ -111,7 +111,7 @@ public class PosterModel {
     // /////////////// //
 
     public String getFormattedGenres(){
-        return StringUtils.assembleString(actors, ", ");
+        return StringUtils.assembleString(genres, ", ");
     }
 
     public String getFormattedActors(Context context){
