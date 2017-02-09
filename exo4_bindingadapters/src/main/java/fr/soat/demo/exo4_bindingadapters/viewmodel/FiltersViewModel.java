@@ -26,18 +26,18 @@ import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 public class FiltersViewModel extends BaseObservable {
 
     private Context context;
+    private Listener listener;
     private MovieSeriesBusinessService movieSeriesBusinessService;
 
     private String searchString = null;
     private CulturalType selectedType = null;
     private int ratingProgress = 0;
 
-    public FiltersViewModel(Context context) {
+    public FiltersViewModel(Context context, Listener listener) {
         this.context = context;
+        this.listener = listener;
         movieSeriesBusinessService = new MovieSeriesBusinessService(context);
     }
-
-    // TODO Create methods here to allow the layout to manipulate data
 
     public String getSearchString() {
         return searchString;
@@ -92,6 +92,11 @@ public class FiltersViewModel extends BaseObservable {
         }
 
         List<MovieSeriesModel> filteredMovieSeries = movieSeriesBusinessService.getFilteredMovieSeries(filters);
+
+        if(listener != null && !filteredMovieSeries.isEmpty()){
+            listener.onShowMovieSeries(filteredMovieSeries.get(0));
+        }
+
         String resultCount;
         if(filteredMovieSeries.isEmpty()){
             resultCount = context.getString(R.string.search_button_no_result);
@@ -99,6 +104,10 @@ public class FiltersViewModel extends BaseObservable {
             resultCount = context.getResources().getQuantityString(R.plurals.search_button_result, filteredMovieSeries.size(), filteredMovieSeries.size());
         }
         return resultCount;
+    }
+
+    public void onResultButtonClicked(){
+
     }
 
     private int convertCulturalTypeToButtonId(CulturalType type){
@@ -123,5 +132,10 @@ public class FiltersViewModel extends BaseObservable {
                 return CulturalType.SERIES;
         }
         return null;
+    }
+
+
+    public interface Listener{
+        void onShowMovieSeries(MovieSeriesModel model);
     }
 }

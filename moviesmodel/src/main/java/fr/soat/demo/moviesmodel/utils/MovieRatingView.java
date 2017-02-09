@@ -13,35 +13,35 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import fr.soat.demo.moviesmodel.R;
-import fr.soat.demo.moviesmodel.model.PGRating;
+import fr.soat.demo.moviesmodel.model.MovieRating;
 
 /**
  * Created by yann_huriez on 09/02/17.
  */
 
-public class PGRatingView extends LinearLayout {
+public class MovieRatingView extends LinearLayout {
 
     private ImageView ratingImageView;
     private TextView ratingTextView;
 
-    public PGRatingView(Context context) {
+    public MovieRatingView(Context context) {
         super(context);
         init();
     }
 
-    public PGRatingView(Context context, @Nullable AttributeSet attrs) {
+    public MovieRatingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
     private void init() {
-        View mainView = inflate(getContext(), R.layout.view_pg_rating, null);
+        View mainView = inflate(getContext(), R.layout.view_movie_rating, null);
 
         ratingImageView = (ImageView) mainView.findViewById(R.id.pg_rating_image);
         ratingTextView = (TextView) mainView.findViewById(R.id.pg_rating_advertising);
     }
 
-    public void setPGRatingForAudienceAndAdvertising(PGRating rating){
+    public void setPGRatingForAudienceAndAdvertising(MovieRating rating){
         @ColorRes int ratingColor = -1;
         @StringRes int ratingText = -1;
         @DrawableRes int ratingImage = -1;

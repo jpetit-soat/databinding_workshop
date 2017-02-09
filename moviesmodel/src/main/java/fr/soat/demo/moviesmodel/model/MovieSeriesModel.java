@@ -26,13 +26,14 @@ public class MovieSeriesModel {
     private final int imdbVotes;
     private final int metascore;
     private final int totalSeasons;
+    private final MovieRating movieRating;
 
 
     public MovieSeriesModel(OMDBItem response) {
         posterModel = new PosterModel(response);
 
         writers = StringUtils.createList(response.Writer, ", ");
-        plot = response.Plot;
+        plot = response.Plot.equalsIgnoreCase("N/A") ? null : response.Plot;
         languages = StringUtils.createList(response.Language, ", ");
         country = StringUtils.createList(response.Country, ", ");
         imdbID = response.imdbID;
@@ -79,6 +80,9 @@ public class MovieSeriesModel {
         } else {
             runtime = -1;
         }
+
+        // Movie rating
+        movieRating = toMovieRating(response.Rated);
     }
 
     public PosterModel getPosterModel() {
@@ -127,5 +131,25 @@ public class MovieSeriesModel {
 
     public int getTotalSeasons() {
         return totalSeasons;
+    }
+
+    public MovieRating getMovieRating() {
+        return movieRating;
+    }
+
+    public static MovieRating toMovieRating(String rating){
+        switch (rating){
+            case "G":
+                return MovieRating.G;
+            case "PG":
+                return MovieRating.PG;
+            case "PG-13":
+                return MovieRating.PG_13;
+            case "R":
+                return MovieRating.R;
+            case "NC_17":
+                return MovieRating.NC_17;
+        }
+        return null;
     }
 }

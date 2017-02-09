@@ -34,7 +34,7 @@ public class PosterModel {
 
 
     public PosterModel(OMDBItem response) {
-        this.posterUrl = response.Poster;
+        this.posterUrl = response.Poster.equalsIgnoreCase("N/A") ? null : response.Poster;
         this.title = response.Title;
         this.actors = StringUtils.createList(response.Actors, ", ");
         this.genres = StringUtils.createList(response.Genre, ", ");

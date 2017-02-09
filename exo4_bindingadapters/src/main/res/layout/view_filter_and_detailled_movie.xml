@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="filterModel"
             type="fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel" />
@@ -23,10 +23,11 @@
             layout="@layout/view_filters"
             app:model="@{filterModel}" />
 
+
         <include
             android:id="@+id/movie_view"
             layout="@layout/view_detailed_movie"
-            app:model="@{movieModel}" />
+            app:model="@{movieModel}"/>
 
     </LinearLayout>
 </layout>
