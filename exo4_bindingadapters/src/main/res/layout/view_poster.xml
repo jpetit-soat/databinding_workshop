@@ -33,6 +33,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/spacing_base"
             android:layout_marginStart="@dimen/spacing_base"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_toEndOf="@id/simple_movie_poster"
             android:layout_toRightOf="@id/simple_movie_poster"
             android:text="@{model.title}"

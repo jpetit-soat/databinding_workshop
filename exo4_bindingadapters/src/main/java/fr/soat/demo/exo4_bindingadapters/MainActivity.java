@@ -1,5 +1,6 @@
 package fr.soat.demo.exo4_bindingadapters;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -10,6 +11,7 @@ import android.support.annotation.ColorRes;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
 
         binding.setMovieModel(detailedMovieViewModel);
 
+        // Used to hide the keyboard.
+        // // TODO Bonus If you feel at ease, you can do it using DataBinding
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+
         // The data contained in the ViewModel are scheduled to update the view before the next frame.
         // This method allows to update the view immediately, to make the changes from "updateViewWithDetails"
         // happens after the data binding.
@@ -75,9 +83,9 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         // Font change should be made only if there is a change in cultural type
         CulturalType newType = movieOrSeriesModel.getPosterModel().getType();
         if (newType == CulturalType.SERIES) {
-            setFont(plotView, "helvetica_normal");
-        } else {
             setFont(plotView, "roboto_condensed_light");
+        } else {
+            setFont(plotView, "helvetica_normal");
         }
 
 
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     private void setFont(TextView view, String newFont){
         if(lastFont == null || !lastFont.equals(newFont)) {
             lastFont = newFont;
-            Typeface type = Typeface.createFromAsset(getAssets(), "fonts/helvetica_normal.ttf");
+            Typeface type = Typeface.createFromAsset(getAssets(), "fonts/" + lastFont + ".ttf");
             view.setTypeface(type);
         }
     }
