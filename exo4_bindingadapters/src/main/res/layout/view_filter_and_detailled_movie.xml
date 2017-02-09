@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="filterModel"
+            type="fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel" />
+
+        <variable
+            name="movieModel"
+            type="fr.soat.demo.exo4_bindingadapters.viewmodel.DetailledMovieViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/filter_view"
+            layout="@layout/view_filters"
+            app:model="@{filterModel}" />
+
+        <include
+            android:id="@+id/movie_view"
+            layout="@layout/view_detailed_movie"
+            app:model="@{movieModel}" />
+
+    </LinearLayout>
+</layout>

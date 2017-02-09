@@ -1,71 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_large">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/simple_movie_poster"
-        android:layout_width="@dimen/poster_width"
-        android:layout_height="@dimen/poster_height"
-        tools:src="@drawable/stranger_things"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        tools:ignore="ContentDescription" />
+    <data>
+        <variable
+            name="model"
+            type="fr.soat.demo.moviesmodel.model.PosterModel"/>
+    </data>
 
-    <TextView
-        android:id="@+id/simple_movie_title"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Stranger Things"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:layout_toRightOf="@id/simple_movie_poster"
-        android:layout_toEndOf="@id/simple_movie_poster"/>
 
-    <TextView
-        android:id="@+id/simple_movie_year"
-        style="@style/Base.TextAppearance.AppCompat.Subhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="2016 - Today"
-        android:layout_below="@id/simple_movie_title"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:layout_toRightOf="@id/simple_movie_poster"
-        android:layout_toEndOf="@id/simple_movie_poster"/>
-
-    <TextView
-        android:id="@+id/simple_movie_genre"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textStyle="italic"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Drama, Fantasy, Horror"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:layout_alignBottom="@id/simple_movie_poster"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:layout_toRightOf="@id/simple_movie_poster"
-        android:layout_toEndOf="@id/simple_movie_poster"/>
+        android:padding="@dimen/spacing_large">
 
-    <TextView
-        android:id="@+id/simple_movie_actors"
-        style="@style/Base.TextAppearance.AppCompat.Body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:ellipsize="end"
-        tools:text="With : Winona Ryder, David Harbour, Finn Wolfhard, Millie Bobby Brown"
-        android:layout_above="@id/simple_movie_genre"
-        android:layout_marginLeft="@dimen/spacing_base"
-        android:layout_marginStart="@dimen/spacing_base"
-        android:layout_toRightOf="@id/simple_movie_poster"
-        android:layout_toEndOf="@id/simple_movie_poster"/>
+        <ImageView
+            android:id="@+id/simple_movie_poster"
+            android:layout_width="@dimen/poster_width"
+            android:layout_height="@dimen/poster_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@{model.imageLoaded}"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/guardians_of_the_galaxy" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/simple_movie_title"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_toEndOf="@id/simple_movie_poster"
+            android:layout_toRightOf="@id/simple_movie_poster"
+            android:text="@{model.title}"
+            tools:text="Guardians of the Galaxy" />
+
+        <TextView
+            android:id="@+id/simple_movie_year"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/simple_movie_title"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_toEndOf="@id/simple_movie_poster"
+            android:layout_toRightOf="@id/simple_movie_poster"
+            android:text="@{model.getFormattedDate(context)}"
+            tools:text="13 août 2014" />
+
+        <TextView
+            android:id="@+id/simple_movie_genre"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/simple_movie_poster"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_toEndOf="@id/simple_movie_poster"
+            android:layout_toRightOf="@id/simple_movie_poster"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textStyle="italic"
+            android:text="@{model.formattedGenres}"
+            tools:text="Science-fiction, Action" />
+
+        <TextView
+            android:id="@+id/simple_movie_actors"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/simple_movie_genre"
+            android:layout_marginLeft="@dimen/spacing_base"
+            android:layout_marginStart="@dimen/spacing_base"
+            android:layout_toEndOf="@id/simple_movie_poster"
+            android:layout_toRightOf="@id/simple_movie_poster"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{model.getFormattedActors(context)}"
+            tools:text="Actor : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..." />
+
+    </RelativeLayout>
+</layout>
