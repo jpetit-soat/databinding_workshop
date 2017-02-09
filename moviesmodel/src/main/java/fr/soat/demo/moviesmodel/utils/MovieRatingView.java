@@ -41,39 +41,40 @@ public class MovieRatingView extends LinearLayout {
         ratingTextView = (TextView) mainView.findViewById(R.id.pg_rating_advertising);
     }
 
-    public void setPGRatingForAudienceAndAdvertising(MovieRating rating){
+    public void setRatingForAudienceAndAdvertising(MovieRating rating){
         @ColorRes int ratingColor = -1;
         @StringRes int ratingText = -1;
         @DrawableRes int ratingImage = -1;
 
-        switch (rating){
-            case G:
-                ratingColor = R.color.rated_green;
-                ratingText = R.string.PG_rating_advertising_green;
-                ratingImage = R.drawable.ic_rated_g;
-                break;
-            case PG:
-                ratingColor = R.color.rated_green;
-                ratingText = R.string.PG_rating_advertising_green;
-                ratingImage = R.drawable.ic_rated_pg;
-                break;
-            case PG_13:
-                ratingColor = R.color.rated_yellow;
-                ratingText = R.string.PG_rating_advertising_yellow;
-                ratingImage = R.drawable.ic_rated_pg_13;
-                break;
-            case R:
-                ratingColor = R.color.rated_red;
-                ratingText = R.string.PG_rating_advertising_red;
-                ratingImage = R.drawable.ic_rated_r;
-                break;
-            case NC_17:
-                ratingColor = R.color.rated_red;
-                ratingText = R.string.PG_rating_advertising_red;
-                ratingImage = R.drawable.ic_rated_nc_17;
-                break;
+        if(rating != null) {
+            switch (rating) {
+                case G:
+                    ratingColor = R.color.rated_green;
+                    ratingText = R.string.PG_rating_advertising_green;
+                    ratingImage = R.drawable.ic_rated_g;
+                    break;
+                case PG:
+                    ratingColor = R.color.rated_green;
+                    ratingText = R.string.PG_rating_advertising_green;
+                    ratingImage = R.drawable.ic_rated_pg;
+                    break;
+                case PG_13:
+                    ratingColor = R.color.rated_yellow;
+                    ratingText = R.string.PG_rating_advertising_yellow;
+                    ratingImage = R.drawable.ic_rated_pg_13;
+                    break;
+                case R:
+                    ratingColor = R.color.rated_red;
+                    ratingText = R.string.PG_rating_advertising_red;
+                    ratingImage = R.drawable.ic_rated_r;
+                    break;
+                case NC_17:
+                    ratingColor = R.color.rated_red;
+                    ratingText = R.string.PG_rating_advertising_red;
+                    ratingImage = R.drawable.ic_rated_nc_17;
+                    break;
+            }
         }
-
         if(ratingImage >= 0){
             ratingImageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), ratingImage, null));
             ratingTextView.setTextColor(ResourcesCompat.getColor(getResources(), ratingColor, null));

@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     }
 
     // This callback method comes from FilterViewModel.Listener
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onShowMovieSeries(MovieSeriesModel movieOrSeriesModel) {
         DetailedMovieViewModel detailedMovieViewModel = new DetailedMovieViewModel(this, movieOrSeriesModel);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         binding.setMovieModel(detailedMovieViewModel);
 
         // Used to hide the keyboard.
-        // // TODO Bonus If you feel at ease, you can do it using DataBinding
+        // // TODO Bonus If you feel at ease, you can do it using BindingAdapter
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         MovieRatingView ratingView = (MovieRatingView) findViewById(R.id.detailed_movie_rating);
         MovieRating movieRating = movieOrSeriesModel.getMovieRating();
         if(movieRating != null) {
-            ratingView.setPGRatingForAudienceAndAdvertising(movieRating);
+            ratingView.setRatingForAudienceAndAdvertising(movieRating);
         }
 
 
@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         ImageView posterView = (ImageView) findViewById(R.id.simple_movie_poster);
         PosterModel posterModel = movieOrSeriesModel.getPosterModel();
 
-        setPosterImage(posterView, posterModel, R.drawable.ic_empty_poster);
+        Drawable emptyPosterDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_empty_poster, null);
+        setPosterImage(posterView, posterModel, emptyPosterDrawable);
     }
 
     private void setVisible(View view, boolean visible){
@@ -140,12 +141,12 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         }
     }
 
-    private void setPosterImage(ImageView imageView, PosterModel posterModel, @DrawableRes int defaultView){
+    private void setPosterImage(ImageView imageView, PosterModel posterModel, Drawable defaultView){
         if(posterModel != null && posterModel.getPosterUrl() != null){
             Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
             imageView.setImageDrawable(drawableFromPoster);
         } else {
-            imageView.setImageResource(defaultView);
+            imageView.setImageDrawable(defaultView);
         }
     }
 }
