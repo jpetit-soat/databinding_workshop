@@ -7,6 +7,8 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 
 import fr.soat.demo.exo4_bindingadapters.R;
+import fr.soat.demo.moviesmodel.model.CulturalType;
+import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
@@ -87,4 +89,20 @@ public class DetailedMovieViewModel {
         PopupUtils.showPopupForVotes(context, view, movieModel.getImdbVotes());
     }
 
+    // //////////////
+    // New Methods //
+    // //////////////
+
+    public String getPlotFont(){
+        CulturalType newType = getPosterModel().getType();
+        if (newType == CulturalType.SERIES) {
+            return "roboto_condensed_light";
+        } else {
+            return "helvetica_normal";
+        }
+    }
+
+    public MovieRating getMovieRating() {
+        return movieModel.getMovieRating();
+    }
 }

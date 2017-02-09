@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,8 +21,9 @@ import fr.soat.demo.exo4_bindingadapters.databinding.ViewFilterAndDetailledMovie
 import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
-import fr.soat.demo.moviesmodel.model.CulturalType;
+import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
+import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.MovieRatingView;
 
 public class MainActivity extends AppCompatActivity implements FiltersViewModel.Listener {
@@ -61,32 +63,28 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         // happens after the data binding.
         binding.executePendingBindings();
 
-        // TODO The code contained in this method can entirely be replace with BindingAdapters
-        updateViewWithDetails(movieOrSeriesModel);
+        // TODO The code contained in this method can entirely be replace with BindingAdapters. Comment line below when its done
+        updateViewWithDetails(detailedMovieViewModel);
     }
 
 
-    private void updateViewWithDetails(MovieSeriesModel movieOrSeriesModel) {
+    private void updateViewWithDetails(DetailedMovieViewModel movieOrSeriesModel) {
         // TODO Here, we hide views that may don't have their relative value. Must be changed by a BindingAdapter
         View directorView = findViewById(R.id.detailed_movie_director);
         View durationView = findViewById(R.id.detailed_movie_duration);
         TextView plotView = (TextView) findViewById(R.id.detailed_movie_plot);
         View writersView = findViewById(R.id.detailed_movie_writers);
 
-        setVisible(directorView, movieOrSeriesModel.getDirector() != null);
-        setVisible(durationView, movieOrSeriesModel.getRuntime()< 0);
-        setVisible(plotView, movieOrSeriesModel.getPlot() != null);
-        setVisible(writersView, movieOrSeriesModel.getWriters().isEmpty());
+        setVisible(directorView, movieOrSeriesModel.director != null);
+        setVisible(durationView, movieOrSeriesModel.duration != null);
+        setVisible(plotView, movieOrSeriesModel.plot != null);
+        setVisible(writersView, movieOrSeriesModel.writers != null);
 
 
         // TODO Use a BindingAdapter to do this font switch directly inside the XML.
         // Font change should be made only if there is a change in cultural type
-        CulturalType newType = movieOrSeriesModel.getPosterModel().getType();
-        if (newType == CulturalType.SERIES) {
-            setFont(plotView, "roboto_condensed_light");
-        } else {
-            setFont(plotView, "helvetica_normal");
-        }
+        String plotFont = movieOrSeriesModel.getPlotFont();
+        setFont(plotView, plotFont);
 
 
         // TODO Use a BindingAdapter to pass the star color res through the XML
@@ -101,20 +99,18 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
 
         // TODO Call this custom view setter from the XML. You can do it using BindingAdapter, or guess the attribute name based on the setter.
         // TODO Bonus : rename this setter attribute using "BindingMethods"
-        if(movieOrSeriesModel.getMovieRating() != null) {
-            MovieRatingView ratingView = (MovieRatingView) findViewById(R.id.detailed_movie_rating);
-            ratingView.setPGRatingForAudienceAndAdvertising(movieOrSeriesModel.getMovieRating());
+        MovieRatingView ratingView = (MovieRatingView) findViewById(R.id.detailed_movie_rating);
+        MovieRating movieRating = movieOrSeriesModel.getMovieRating();
+        if(movieRating != null) {
+            ratingView.setPGRatingForAudienceAndAdvertising(movieRating);
         }
 
 
         // TODO Load the poster using a BindingAdapter with multiple parameter : one for the URL, one for the default image in case of error
         ImageView posterView = (ImageView) findViewById(R.id.simple_movie_poster);
-        if(movieOrSeriesModel.getPosterModel().getPosterUrl() != null){
-            Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(movieOrSeriesModel.getPosterModel());
-            posterView.setImageDrawable(drawableFromPoster);
-        } else {
-            posterView.setImageResource(R.drawable.ic_empty_poster);
-        }
+        PosterModel posterModel = movieOrSeriesModel.getPosterModel();
+
+        setPosterImage(posterView, posterModel, R.drawable.ic_empty_poster);
     }
 
     private void setVisible(View view, boolean visible){
@@ -126,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     }
 
     private void setFont(TextView view, String newFont){
+        if(lastFont == null && newFont == null){
+            return;
+        }
+
         if(lastFont == null || !lastFont.equals(newFont)) {
             lastFont = newFont;
             Typeface type = Typeface.createFromAsset(getAssets(), "fonts/" + lastFont + ".ttf");
@@ -134,7 +134,18 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     }
 
     private void setStarColor(RatingBar ratingBar, @ColorRes int starColor){
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), starColor, null), PorterDuff.Mode.SRC_ATOP);
+        if(starColor >= 0) {
+            LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+            stars.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), starColor, null), PorterDuff.Mode.SRC_ATOP);
+        }
+    }
+
+    private void setPosterImage(ImageView imageView, PosterModel posterModel, @DrawableRes int defaultView){
+        if(posterModel != null && posterModel.getPosterUrl() != null){
+            Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
+            imageView.setImageDrawable(drawableFromPoster);
+        } else {
+            imageView.setImageResource(defaultView);
+        }
     }
 }
