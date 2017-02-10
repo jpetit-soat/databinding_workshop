@@ -9,15 +9,14 @@ import android.support.v7.widget.RecyclerView;
 
 public class RecyclerBindingViewHolder extends RecyclerView.ViewHolder {
 
-    private final ViewDataBinding viewBinding;
-
     public RecyclerBindingViewHolder(ViewDataBinding viewBinding) {
         super(viewBinding.getRoot());
-        this.viewBinding = viewBinding;
+        // TODO Save the binding
     }
 
     public void setViewModel(BindableViewModel viewModel) {
-        viewBinding.setVariable(viewModel.getVariableId(), viewModel);
-        viewBinding.executePendingBindings();
+        // TODO set the ViewModel to the saved binding
+
+        // TODO Ask the binding class to immediately execute the binding operation
     }
 }

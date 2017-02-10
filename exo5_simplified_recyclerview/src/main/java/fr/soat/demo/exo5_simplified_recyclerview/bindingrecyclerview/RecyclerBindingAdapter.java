@@ -1,7 +1,5 @@
 package fr.soat.demo.exo5_simplified_recyclerview.bindingrecyclerview;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -24,18 +22,20 @@ public class RecyclerBindingAdapter extends RecyclerView.Adapter<RecyclerBinding
             mInflater = LayoutInflater.from(parent.getContext());
         }
 
-        ViewDataBinding viewDataBinding = DataBindingUtil.inflate(mInflater, viewType_layoutRes, parent, false);
-        return new RecyclerBindingViewHolder(viewDataBinding);
+        // TODO Inflate the right binding and return the generic ViewHolder with the binding class
+
+        return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerBindingViewHolder holder, int position) {
-        holder.setViewModel(viewModels.get(position));
+        // TODO Give to the view holder the right ViewModel
     }
 
     @Override
     public int getItemViewType(int position) {
-        return viewModels.get(position).getLayoutRes();
+        // TODO Return the layout res id here, in order to re-employ it for inflation in the onCreateViewHolder method
+        return -1;
     }
 
     @Override
@@ -50,9 +50,4 @@ public class RecyclerBindingAdapter extends RecyclerView.Adapter<RecyclerBinding
 
         notifyDataSetChanged();
     }
-
-    public List<BindableViewModel> getViewModels() {
-        return viewModels;
-    }
-
 }
