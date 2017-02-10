@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(movieModel.getPosterModel());
         movieModel.getPosterModel().setImageLoaded(drawableFromPoster);
 
-        if(USING_DATABINDING){
-            initWithDataBindingMethod(movieModel);
-        } else {
+        if(!USING_DATABINDING){
             initWithTraditionnalMethod(movieModel);
+        } else {
+            initWithDataBindingMethod(movieModel);
         }
     }
 

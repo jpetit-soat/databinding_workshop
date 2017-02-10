@@ -22,7 +22,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:src="@{model.imageLoaded}"
+            app:posterSrc="@{model}"
+            app:defaultImage="@{@drawable/ic_empty_poster}"
             tools:ignore="ContentDescription"
             tools:src="@drawable/guardians_of_the_galaxy" />
 

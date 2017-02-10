@@ -1,8 +1,6 @@
 package fr.soat.demo.exo4_bindingadapters.utils;
 
 import android.content.Context;
-import android.databinding.BindingMethod;
-import android.databinding.BindingMethods;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -20,9 +18,8 @@ import fr.soat.demo.moviesmodel.model.MovieRating;
 /**
  * Created by yann_huriez on 09/02/17.
  */
-@BindingMethods({
-        @BindingMethod(type = MovieRatingView.class, attribute = "android:rating", method = "setRatingForAudienceAndAdvertising")
-})
+
+// TODO Bonus : Add an annotation here to rename the attribute associated with the setter 'setRatingForAudienceAndAdvertising'
 public class MovieRatingView extends LinearLayout {
 
     private ImageView ratingImageView;

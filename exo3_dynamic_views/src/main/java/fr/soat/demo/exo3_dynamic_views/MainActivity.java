@@ -51,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         movieSeriesBusinessService = new MovieSeriesBusinessService(this);
 
-        if(USING_DATABINDING){
-            initWithDataBindingMethod();
+        if(!USING_DATABINDING){
+            initWithTraditionalMethod();
         } else {
-            initWithTraditionnalMethod();
+            initWithDataBindingMethod();
         }
     }
 
-    private void initWithTraditionnalMethod(){
+    private void initWithTraditionalMethod(){
         setContentView(R.layout.view_filters);
 
         initFields();

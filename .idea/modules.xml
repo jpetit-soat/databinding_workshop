@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataBindingWorkshop.iml" filepath="$PROJECT_DIR$/DataBindingWorkshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo1_helloworld/exo1_helloworld.iml" filepath="$PROJECT_DIR$/exo1_helloworld/exo1_helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" filepath="$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo3_dynamic_views/exo3_dynamic_views.iml" filepath="$PROJECT_DIR$/exo3_dynamic_views/exo3_dynamic_views.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo4_bindingadapters/exo4_bindingadapters.iml" filepath="$PROJECT_DIR$/exo4_bindingadapters/exo4_bindingadapters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo5_simplified_recyclerview/exo5_simplified_recyclerview.iml" filepath="$PROJECT_DIR$/exo5_simplified_recyclerview/exo5_simplified_recyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moviesmodel/moviesmodel.iml" filepath="$PROJECT_DIR$/moviesmodel/moviesmodel.iml" />
+    </modules>
+  </component>
+</project>

@@ -38,6 +38,8 @@
     <string name="PG_rating_advertising_green">The following description has been approved for appropriate audiences.</string>
     <string name="PG_rating_advertising_yellow">The following description has been approved only for age-appropriate internet users</string>
     <string name="PG_rating_advertising_red">The following restricted description has been approved for appropriate audiences</string>
+    <string name="list_title_best_proposal">Best proposal</string>
+    <string name="list_title_other_proposals">Other proposals</string>
 
 
 </resources>

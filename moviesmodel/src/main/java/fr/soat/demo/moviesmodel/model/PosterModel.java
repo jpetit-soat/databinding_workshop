@@ -28,7 +28,6 @@ public class PosterModel {
     private final Date releaseDate;
     private final List<String> actors;
     private final List<String> genres;
-    private final String rated;
 
     private Drawable imageLoaded;
 
@@ -38,7 +37,6 @@ public class PosterModel {
         this.title = response.Title;
         this.actors = StringUtils.createList(response.Actors, ", ");
         this.genres = StringUtils.createList(response.Genre, ", ");
-        this.rated = response.Rated;
         this.type = CulturalType.typeFromString(response.Type);
 
         if(response.Released != null && !response.Released.equalsIgnoreCase("N/A")){
@@ -88,10 +86,6 @@ public class PosterModel {
 
     public Date getEndYear() {
         return endYear;
-    }
-
-    public String getRated() {
-        return rated;
     }
 
     public CulturalType getType() {

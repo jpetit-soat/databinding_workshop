@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import fr.soat.demo.exo4_bindingadapters.databinding.ViewFilterAndDetailledMovieBinding;
-import fr.soat.demo.exo4_bindingadapters.view.MovieRatingView;
+import fr.soat.demo.exo4_bindingadapters.utils.MovieRatingView;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
@@ -25,7 +27,7 @@ import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
-public class MainActivity extends AppCompatActivity implements FiltersViewModel.Listener {
+public class MainActivity extends AppCompatActivity implements FilterListener {
 
     private MovieSeriesBusinessService movieSeriesBusinessService;
     private ViewFilterAndDetailledMovieBinding binding;
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
     // This callback method comes from FilterViewModel.Listener
     @SuppressWarnings("ConstantConditions")
     @Override
-    public void onShowMovieSeries(MovieSeriesModel movieOrSeriesModel) {
-        DetailedMovieViewModel detailedMovieViewModel = new DetailedMovieViewModel(this, movieOrSeriesModel);
+    public void onShowMovieSeries(List<MovieSeriesModel> movieOrSeriesModel) {
+        DetailedMovieViewModel detailedMovieViewModel = new DetailedMovieViewModel(this, movieOrSeriesModel.get(0));
 
         binding.setMovieModel(detailedMovieViewModel);
 

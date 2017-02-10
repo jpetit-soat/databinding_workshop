@@ -1,4 +1,4 @@
-package fr.soat.demo.exo4_bindingadapters.viewmodel;
+package fr.soat.demo.exo5_simplified_recyclerview.viewmodel;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
@@ -8,9 +8,9 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.soat.demo.exo4_bindingadapters.BR;
-import fr.soat.demo.exo4_bindingadapters.FilterListener;
-import fr.soat.demo.exo4_bindingadapters.R;
+import fr.soat.demo.exo5_simplified_recyclerview.BR;
+import fr.soat.demo.exo5_simplified_recyclerview.FilterListener;
+import fr.soat.demo.exo5_simplified_recyclerview.R;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.business.filters.AbstractMovieSeriesFilter;
 import fr.soat.demo.moviesmodel.business.filters.RatingFilter;
@@ -135,5 +135,4 @@ public class FiltersViewModel extends BaseObservable {
         }
         return null;
     }
-
 }

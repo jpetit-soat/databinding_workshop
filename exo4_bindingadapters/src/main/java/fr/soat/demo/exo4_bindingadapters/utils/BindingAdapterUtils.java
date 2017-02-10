@@ -1,4 +1,4 @@
-package fr.soat.demo.exo4_bindingadapters;
+package fr.soat.demo.exo4_bindingadapters.utils;
 
 /**
  * Created by yann_huriez on 09/02/17.
