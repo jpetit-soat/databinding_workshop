@@ -1,4 +1,4 @@
-package fr.soat.demo.moviesmodel.utils;
+package fr.soat.demo.exo4_bindingadapters.view;
 
 import android.content.Context;
 import android.support.annotation.ColorRes;
@@ -12,13 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import fr.soat.demo.moviesmodel.R;
+import fr.soat.demo.exo4_bindingadapters.R;
 import fr.soat.demo.moviesmodel.model.MovieRating;
 
 /**
  * Created by yann_huriez on 09/02/17.
  */
 
+// TODO Bonus : Add an annotation here to rename the attribute associated with the setter 'setRatingForAudienceAndAdvertising'
 public class MovieRatingView extends LinearLayout {
 
     private ImageView ratingImageView;
@@ -35,7 +36,7 @@ public class MovieRatingView extends LinearLayout {
     }
 
     private void init() {
-        View mainView = inflate(getContext(), R.layout.view_movie_rating, null);
+        View mainView = inflate(getContext(), R.layout.view_movie_rating, this);
 
         ratingImageView = (ImageView) mainView.findViewById(R.id.pg_rating_image);
         ratingTextView = (TextView) mainView.findViewById(R.id.pg_rating_advertising);

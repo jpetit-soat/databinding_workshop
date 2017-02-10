@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,13 +17,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import fr.soat.demo.exo4_bindingadapters.databinding.ViewFilterAndDetailledMovieBinding;
+import fr.soat.demo.exo4_bindingadapters.view.MovieRatingView;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
-import fr.soat.demo.moviesmodel.utils.MovieRatingView;
 
 public class MainActivity extends AppCompatActivity implements FiltersViewModel.Listener {
 
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
 
         binding.setMovieModel(detailedMovieViewModel);
 
+        // // TODO Bonus If you feel at ease, you can do it using DataBinding
         // Used to hide the keyboard.
-        // // TODO Bonus If you feel at ease, you can do it using BindingAdapter
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
@@ -89,12 +89,9 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
 
         // TODO Use a BindingAdapter to pass the star color res through the XML
         RatingBar movieRatingBar = (RatingBar) findViewById(R.id.detailed_movie_imdb_rating);
-        RatingBar filterRatingBar = (RatingBar) findViewById(R.id.view_filter_imdb_rating);
 
-        @ColorRes int starColor = R.color.star_color;
-
+        @ColorInt int starColor = ResourcesCompat.getColor(getResources(), R.color.star_color, null);
         setStarColor(movieRatingBar, starColor);
-        setStarColor(filterRatingBar, starColor);
 
 
         // TODO Call this custom view setter from the XML. You can do it using BindingAdapter, or guess the attribute name based on the setter.
@@ -134,11 +131,9 @@ public class MainActivity extends AppCompatActivity implements FiltersViewModel.
         }
     }
 
-    private void setStarColor(RatingBar ratingBar, @ColorRes int starColor){
-        if(starColor >= 0) {
-            LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-            stars.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), starColor, null), PorterDuff.Mode.SRC_ATOP);
-        }
+    private void setStarColor(RatingBar ratingBar, @ColorInt int starColor){
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(starColor, PorterDuff.Mode.SRC_ATOP);
     }
 
     private void setPosterImage(ImageView imageView, PosterModel posterModel, Drawable defaultView){

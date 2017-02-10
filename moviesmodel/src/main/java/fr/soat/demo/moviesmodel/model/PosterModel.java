@@ -119,6 +119,10 @@ public class PosterModel {
     }
 
     public String getFormattedDate(Context context){
-        return DateUtils.formatDateToString(getReleaseDate(), context.getString(R.string.date_format_release));
+        Date releaseDate = getReleaseDate();
+        if(releaseDate != null){
+            return DateUtils.formatDateToString(releaseDate, context.getString(R.string.date_format_release));
+        }
+        return null;
     }
 }

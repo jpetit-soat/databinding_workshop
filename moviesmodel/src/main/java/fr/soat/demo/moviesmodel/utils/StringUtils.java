@@ -18,9 +18,7 @@ public class StringUtils {
         }
 
         List<String> result = new ArrayList<>();
-        for (String fieldToken : field.split(separator)) {
-            result.add(fieldToken);
-        }
+        Collections.addAll(result, field.split(separator));
         return result;
     }
 
