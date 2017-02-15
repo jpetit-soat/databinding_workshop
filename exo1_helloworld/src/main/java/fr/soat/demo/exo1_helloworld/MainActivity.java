@@ -26,16 +26,13 @@ public class MainActivity extends AppCompatActivity {
         // TODO Replace with right method coming from DataBindingUtils
         setContentView(R.layout.view_poster);
 
-        // TODO This method is not used with DataBinding
+        // TODO This method is not needed with DataBinding
         initFields();
 
-        // This code retrieve the wanted movie model and gives him a Drawable for the poster
-        MovieSeriesBusinessService movieSeriesBusinessService = new MovieSeriesBusinessService(this);
-        PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName(MOVIE_NAME);
-        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
-        posterModel.setImageLoaded(drawableFromPoster);
+        // This object contains all the needed data for the view
+        PosterModel posterModel = getPosterModel();
 
-        // TODO The data loading must be made by the layout XML
+        // TODO The data must be given to the binding
         initData(posterModel);
     }
 
@@ -48,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData(PosterModel posterModel) {
-        if(posterModel.getImageLoaded() != null){
-            moviePoster.setImageDrawable(posterModel.getImageLoaded());
-        }
+
+        moviePoster.setImageDrawable(posterModel.getImageLoaded());
 
         movieTitle.setText(posterModel.getTitle());
 
@@ -62,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO Bonus
         // If you feel great, try to make a binding
-        // without using the methods "getFormatted..."
+        // without using methods "getFormatted..."
+    }
+
+    public PosterModel getPosterModel() {
+        // This code retrieve the wanted movie model and gives him a Drawable for the poster
+        MovieSeriesBusinessService movieSeriesBusinessService = new MovieSeriesBusinessService(this);
+        PosterModel posterModel = movieSeriesBusinessService.getPosterModelFromName(MOVIE_NAME);
+        Drawable drawableFromPoster = movieSeriesBusinessService.getDrawableFromPoster(posterModel);
+        posterModel.setImageLoaded(drawableFromPoster);
+        return posterModel;
     }
 }
