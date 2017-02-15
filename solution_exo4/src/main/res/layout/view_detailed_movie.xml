@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="model"
-            type="fr.soat.demo.exo2_viewmodel.DetailedMovieViewModel"/>
+            type="fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_large">
 
         <include
             android:id="@+id/simple_movie_layout"
@@ -20,7 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            app:model="@{model.posterModel}" />
 
         <TextView
             android:id="@+id/detailed_movie_plot"
@@ -32,6 +35,9 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.plot}"
+            app:customFont="@{model.plotFont}"
+            app:setVisible="@{model.plot != null}"
             tools:text="A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe." />
 
         <TextView
@@ -45,6 +51,8 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.director}"
+            app:setVisible="@{model.director != null}"
             tools:text="Director : James Gunn" />
 
         <TextView
@@ -60,6 +68,8 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.writers}"
+            app:setVisible="@{model.writers.isEmpty()}"
             tools:text="Writers : James Gunn, Nicole Perlman, Dan Abnett (based on the Marvel comic book by), Andy Lanning" />
 
         <TextView
@@ -75,7 +85,9 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.duration}"
             android:textStyle="italic"
+            app:setVisible="@{model.duration != null}"
             tools:text="Duration : 121 min" />
 
         <TextView
@@ -83,31 +95,34 @@
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/detailed_movie_duration"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@id/detailed_movie_duration"
             android:layout_marginLeft="@dimen/spacing_large"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_base"
-            android:drawableEnd="@drawable/us"
+            android:drawableEnd="@{model.countryDrawable}"
             android:drawablePadding="@dimen/spacing_base"
-            android:drawableRight="@drawable/us"
-            android:text="@string/format_country_with_drawable" />
+            android:drawableRight="@{model.countryDrawable}"
+            android:text="@{model.countryText}"
+            tools:text="@string/format_country_with_drawable" />
 
         <RatingBar
             android:id="@+id/detailed_movie_imdb_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
+            android:layout_alignBottom="@id/detailed_movie_country"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/detailed_movie_country"
             android:layout_marginEnd="@dimen/spacing_large"
             android:layout_marginRight="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_base"
             android:isIndicator="true"
             android:numStars="5"
+            android:rating="@{model.rating}"
             android:stepSize="0.5"
+            app:starColor="@{@color/star_color}"
             tools:rating="4.5" />
 
         <ImageView
@@ -119,9 +134,25 @@
             android:layout_marginRight="@dimen/spacing_base"
             android:layout_toLeftOf="@id/detailed_movie_imdb_rating"
             android:layout_toStartOf="@id/detailed_movie_imdb_rating"
+            android:onClick="@{(view) -> model.onImdbClicked(view)}"
             android:src="@drawable/icon_imdb"
             tools:ignore="ContentDescription" />
 
+        <fr.soat.demo.exo4_bindingadapters.utils.MovieRatingView
+            android:id="@+id/detailed_movie_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/detailed_movie_country"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_base"
+            android:rating="@{model.movieRating}"
+            android:visibility="gone"
+            tools:visibility="visible" />
 
     </RelativeLayout>
 </layout>

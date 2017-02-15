@@ -22,7 +22,7 @@ import fr.soat.demo.moviesmodel.utils.StringUtils;
 public class MainActivity extends AppCompatActivity {
 
     // TODO Pass this boolean to "true" when ViewModel and binding are ready
-    public static final boolean USING_DATABINDING = false;
+    public static final boolean USING_DATABINDING = true;
 
     public static final String MOVIE_NAME = "The Dark Knight";
 

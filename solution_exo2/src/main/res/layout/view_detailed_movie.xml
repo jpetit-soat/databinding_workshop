@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            app:model="@{model.posterModel}"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />
 
@@ -31,6 +32,7 @@
             android:paddingEnd="@dimen/spacing_large"
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
+            android:text="@{model.plot}"
             android:paddingStart="@dimen/spacing_large"
             tools:text="A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe." />
 
@@ -45,6 +47,7 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.director}"
             tools:text="Director : James Gunn" />
 
         <TextView
@@ -59,6 +62,7 @@
             android:paddingEnd="@dimen/spacing_large"
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
+            android:text="@{model.writers}"
             android:paddingStart="@dimen/spacing_large"
             tools:text="Writers : James Gunn, Nicole Perlman, Dan Abnett (based on the Marvel comic book by), Andy Lanning" />
 
@@ -75,6 +79,7 @@
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:paddingStart="@dimen/spacing_large"
+            android:text="@{model.duration}"
             android:textStyle="italic"
             tools:text="Duration : 121 min" />
 
@@ -89,10 +94,11 @@
             android:layout_marginLeft="@dimen/spacing_large"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_base"
-            android:drawableEnd="@drawable/us"
+            android:drawableEnd="@{model.countryDrawable}"
             android:drawablePadding="@dimen/spacing_base"
-            android:drawableRight="@drawable/us"
-            android:text="@string/format_country_with_drawable" />
+            android:drawableRight="@{model.countryDrawable}"
+            android:text="@{model.countryText}"
+            tools:text="@string/format_country_with_drawable" />
 
         <RatingBar
             android:id="@+id/detailed_movie_imdb_rating"
@@ -106,6 +112,7 @@
             android:layout_marginRight="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_base"
             android:isIndicator="true"
+            android:rating="@{model.rating}"
             android:numStars="5"
             android:stepSize="0.5"
             tools:rating="4.5" />
@@ -119,6 +126,7 @@
             android:layout_marginRight="@dimen/spacing_base"
             android:layout_toLeftOf="@id/detailed_movie_imdb_rating"
             android:layout_toStartOf="@id/detailed_movie_imdb_rating"
+            android:onClick="@{(view) -> model.onImdbClicked(view)}"
             android:src="@drawable/icon_imdb"
             tools:ignore="ContentDescription" />
 

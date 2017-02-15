@@ -4,12 +4,17 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataBindingWorkshop.iml" filepath="$PROJECT_DIR$/DataBindingWorkshop.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo0_hello_world/exo0_hello_world.iml" filepath="$PROJECT_DIR$/exo0_hello_world/exo0_hello_world.iml" />
-      <module fileurl="file://$PROJECT_DIR$/exo1_helloworld/exo1_helloworld.iml" filepath="$PROJECT_DIR$/exo1_helloworld/exo1_helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exo1_model/exo1_model.iml" filepath="$PROJECT_DIR$/exo1_model/exo1_model.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" filepath="$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo3_dynamic_views/exo3_dynamic_views.iml" filepath="$PROJECT_DIR$/exo3_dynamic_views/exo3_dynamic_views.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo4_bindingadapters/exo4_bindingadapters.iml" filepath="$PROJECT_DIR$/exo4_bindingadapters/exo4_bindingadapters.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo5_simplified_recyclerview/exo5_simplified_recyclerview.iml" filepath="$PROJECT_DIR$/exo5_simplified_recyclerview/exo5_simplified_recyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/moviesmodel/moviesmodel.iml" filepath="$PROJECT_DIR$/moviesmodel/moviesmodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution_exo1/solution_exo1.iml" filepath="$PROJECT_DIR$/solution_exo1/solution_exo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution_exo2/solution_exo2.iml" filepath="$PROJECT_DIR$/solution_exo2/solution_exo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution_exo3/solution_exo3.iml" filepath="$PROJECT_DIR$/solution_exo3/solution_exo3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution_exo4/solution_exo4.iml" filepath="$PROJECT_DIR$/solution_exo4/solution_exo4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solution_exo5/solution_exo5.iml" filepath="$PROJECT_DIR$/solution_exo5/solution_exo5.iml" />
     </modules>
   </component>
 </project>
