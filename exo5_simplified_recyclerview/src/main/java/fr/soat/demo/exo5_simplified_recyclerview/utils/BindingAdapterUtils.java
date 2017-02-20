@@ -20,8 +20,6 @@ import fr.soat.demo.moviesmodel.model.PosterModel;
 
 public class BindingAdapterUtils {
 
-    // TODO This class is used as playground to put the static methods declaring BindingAdapters
-
     @BindingAdapter("setVisible")
     public static void setVisible(View view, boolean visible){
         if(visible){
