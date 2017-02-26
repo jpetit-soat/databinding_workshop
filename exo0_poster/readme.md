@@ -1,6 +1,6 @@
-#Introduction : Mon premier Binding
+# Introduction : Mon premier Binding
 
-##Objectif
+## Objectif
 
 Nous verrons dans cet exercice :
 
@@ -8,9 +8,9 @@ Nous verrons dans cet exercice :
 * Comment initialiser une vue pour que celle-ci puisse être lié à une donnée
 * La création de la donnée ainsi que la mise en place de la liaison à une vue
 
-##Rappel
+## Rappel
 
-###Prérequis
+### Prérequis
 
 La bibliothèque "`Data Binding`" est une "`Support library`", celle-ci est donc rétrocompatible avec les versions antérieurs jusqu'à la version d'`Android 2.1 (Api 7+)`
 Pour pouvoir utiliser le data binding, les prérequis sont :
@@ -28,12 +28,12 @@ android {
 }
 ```
 
-###Data Binding dans les fichiers layout
+### Data Binding dans les fichiers layout
 
 //todo rappel sur comment mettre en place le data binding
 //ne pas oublié l'importance de l'ordre 
 
-##Exercice
+## Exercice
 
 Créer votre propre Binding Pour ce faire il faudra :
 
