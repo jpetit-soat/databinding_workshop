@@ -31,6 +31,7 @@ android {
 ###Data Binding dans les fichiers layout
 
 //todo rappel sur comment mettre en place le data binding
+//ne pas oublié l'importance de l'ordre 
 
 ##Exercice
 
