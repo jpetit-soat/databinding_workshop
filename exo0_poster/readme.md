@@ -39,4 +39,4 @@ Créer votre propre Binding Pour ce faire il faudra :
 
 * Créer un object ayant une propriété `title`
 * Modifier le fichier layout `view_poster.xml` pour que la textview avec l'identifiant `textview` soit lié (bind) à la propriété `title` d'un objet de type `Poster`
-* N'oubliez pas de bien mettre en place la liason de la donnée (Binding data)
+* N'oubliez pas de bien mettre en place la liaison de la donnée (Binding data) au sein de la `MainActivity`
