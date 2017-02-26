@@ -11,10 +11,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // TODO Replace with right method coming from DataBindingUtils
-        setContentView(R.layout.view_hello_world);
+        setContentView(R.layout.view_poster);
 
         // TODO Replace theses lines with the code giving the data to the binding
         TextView textView = (TextView) findViewById(R.id.textview);
-        textView.setText("Hello World !");
+        textView.setText("Poster");
     }
 }
