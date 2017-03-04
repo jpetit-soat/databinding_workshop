@@ -30,13 +30,12 @@ android {
 
 ### Data Binding dans les fichiers layout
 
-//todo rappel sur comment mettre en place le data binding
-//ne pas oublié l'importance de l'ordre 
+//todo rappel sur comment mettre en place le data binding, ne pas oublié l'importance de l'ordre 
 
 ## Exercice
 
 Créer votre propre Binding Pour ce faire il faudra :
 
-* Créer un object ayant une propriété `title`
-* Modifier le fichier layout `view_poster.xml` pour que la textview avec l'identifiant `textview` soit lié (bind) à la propriété `title` d'un objet de type `Poster`
+* Créer une classe `PosterModel` ayant une propriété `title`
+* Modifier le fichier layout `view_poster.xml` pour que la textview avec l'identifiant `textview` soit lié (bind) à la propriété `title` de type `PosterModel` (tips : `variable)
 * N'oubliez pas de bien mettre en place la liaison de la donnée (Binding data) au sein de la `MainActivity`
