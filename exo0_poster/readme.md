@@ -12,7 +12,7 @@ Nous verrons dans cet exercice :
 
 ### Prérequis
 
-La bibliothèque "**Data Binding**" est une *"Support library**", celle-ci est donc rétrocompatible avec les versions antérieurs jusqu'à la version d'**Android 2.1 (Api 7+)**
+La bibliothèque "**Data Binding**" est une "**Support library**", celle-ci est donc rétrocompatible avec les versions antérieurs jusqu'à la version d'**Android 2.1 (Api 7+)**
 Pour pouvoir utiliser le data binding, les prérequis sont :
 
 * une version du plugin de gradle supérieur ou égale à **1.5.0-alpha1**
@@ -116,6 +116,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ## Exercice
 
 1. Créer un Binding sur une chaine de caractère
+
     Pour ce faire, il faudra :
     * Modifier le fichier layout `view_poster.xml` pour que la textview avec l'identifiant `textview` soit lié à une `String`
 2. Créer un Binding sur un objet plus complexe
