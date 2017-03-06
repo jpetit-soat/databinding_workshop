@@ -115,7 +115,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ## Exercice
 
-1. Créer un Binding sur une chaine de caractère
+1. Créer un Binding sur une chaine de caractères
 
     Pour ce faire, il faudra :
     * Modifier le fichier layout `view_poster.xml` pour que la textview avec l'identifiant `textview` soit lié à une `String`
