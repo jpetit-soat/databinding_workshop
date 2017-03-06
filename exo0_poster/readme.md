@@ -5,7 +5,7 @@
 Nous verrons dans cet exercice :
 
 * Comment mettre en place l'environnment permettant d'utiliser le "**Data Binding**"
-* Comment initialiser une vue pour que celle-ci puisse être lié à une donnée
+* Comment initialiser une vue pour que celle-ci puisse être liée à une donnée
 * La création de la donnée ainsi que la mise en place de la liaison à une vue
 
 ## Rappel
@@ -53,8 +53,8 @@ Il est important de comprendre que pour qu'une vue soit lié à une donnée que 
 </layout>
 ```
 
-Celà gènererai une classe contenant les bindings associés. celle-ci hérite de la classe `ViewDataBinding`,
-elle se nommera de la même manière que le fichier de layout formatter en pascal case, suffixée de Binding.
+Cela génererait une classe contenant les bindings associés. Celle-ci hérite de la classe `ViewDataBinding`,
+elle se nommera de la même manière que le fichier de layout formatté en pascal case, suffixée par `Binding`.
 
 Par exemple  :
 
@@ -68,9 +68,9 @@ Toutes les données doivent être sous forme d'une variable à déclarer dans `d
 <variable name="title" type="String"/>
 ```
 
-La variable peut peut avoir n'importe quel tant que celle-ci est un Object et non une primitive
+La variable peut avoir n'importe quel type tant que celle-ci est un Object et non une primitive.
 
-les attributs des vues y accèdent en utilisant la syntaxe `@{}` 
+les attributs des vues y accèdent en utilisant la syntaxe `@{}`.
 
 exemple :
 * pour un object simple
@@ -92,14 +92,14 @@ exemple :
 pour que la propriété d'un objet soit accessible, il faut soit :
 
 * qu'elle soit publique
-* soit qu'elle soit encapsulé, dans nore exemple il faut sot quel ait une methode `getFirstName()` ou bien `firstName()` 
+* soit qu'elle soit encapsulée, dans notre exemple, il faut qu'elle contienne une méthode `getFirstName()` ou bien `firstName()` 
 
-Dans un premier temps nous allons nous intérésser seulement au binding d'une activity de la vue de l'activity.
+Dans un premier temps nous allons nous intéresser seulement au binding de la vue de l'activity.
 
 Pour créer le binding il suffit d'appeler une méthode du SDK d'android `DataBindingUtil.setContentView(Activity activity, int layoutId)`
 celle ci instanciera l'objet Binding associé, il faudra par la suite setter les variables.
 
-Exemple: étant donné, une vue avec pour nom de fichier `main_activity.xml`est contenant deux variables avec pour noms `user` et `title`
+Exemple: étant donné, une vue avec pour nom de fichier `main_activity.xml` et contenant deux variables ayant pour noms `user` et `title`
 
 ```java
 @Override
