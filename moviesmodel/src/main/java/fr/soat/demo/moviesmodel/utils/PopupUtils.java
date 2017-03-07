@@ -21,13 +21,13 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class PopupUtils {
 
-    public static void showPopupForVotes(Context context, View originView, int voteNumber) {
+    public static void showPopupForItemCount(Context context, View originView, int itemCount) {
         // Initialize a new instance of LayoutInflater service
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
 
         // Inflate the custom layout/view
         @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.view_popup_votes, null);
+        View customView = inflater.inflate(R.layout.view_popup_item_count, null);
 
         // Initialize a new instance of popup window
         final PopupWindow popupWindow = new PopupWindow(
@@ -43,7 +43,7 @@ public class PopupUtils {
         }
 
         TextView voteTextView = (TextView) customView.findViewById(R.id.popup_votes_text);
-        voteTextView.setText(context.getString(R.string.format_vote_number, voteNumber));
+        voteTextView.setText(context.getString(R.string.format_item_count_number, itemCount));
 
         // Get a reference for the custom view close button
         ImageButton closeButton = (ImageButton) customView.findViewById(R.id.popup_votes_close);

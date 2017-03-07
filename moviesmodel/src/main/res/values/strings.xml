@@ -32,7 +32,7 @@
     <string name="duration_format_minutes_only" translatable="false">%2$d\u00A0min</string>
 
     <string name="metacritic_web_adress" translatable="false">http://www.metacritic.com/</string>
-    <string name="format_vote_number">Number of votes : %1$d</string>
+    <string name="format_item_count_number">Number of movies / series founded : %1$d</string>
     <string name="format_duration">Duration : %1$s</string>
 
     <string name="PG_rating_advertising_green">The following description has been approved for appropriate audiences.</string>

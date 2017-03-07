@@ -4,13 +4,11 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.v4.content.res.ResourcesCompat;
-import android.view.View;
 
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
 import fr.soat.demo.moviesmodel.utils.DrawableUtils;
-import fr.soat.demo.moviesmodel.utils.PopupUtils;
 import fr.soat.demo.moviesmodel.utils.StringUtils;
 
 /**
@@ -80,10 +78,4 @@ public class DetailedMovieViewModel {
     public Drawable getCountryDrawable(){
         return ResourcesCompat.getDrawable(context.getResources(), countryDrawableRes, null);
     }
-
-    public void onImdbClicked(View view){
-        // This code show a popup below the view with the number of voting
-        PopupUtils.showPopupForVotes(context, view, movieModel.getImdbVotes());
-    }
-
 }

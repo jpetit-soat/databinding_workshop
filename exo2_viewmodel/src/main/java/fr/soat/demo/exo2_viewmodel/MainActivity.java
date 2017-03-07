@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
 import fr.soat.demo.moviesmodel.utils.DrawableUtils;
-import fr.soat.demo.moviesmodel.utils.PopupUtils;
 import fr.soat.demo.moviesmodel.utils.StringUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -171,12 +169,5 @@ public class MainActivity extends AppCompatActivity {
         detailedMovieCountry.setText(countryText);
         detailedMovieDuration.setText(getString(R.string.format_duration, duration));
         detailedMovieImdbRating.setRating(rating);
-        detailedMovieImdbIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This code show a popup below the view with the number of voting
-                PopupUtils.showPopupForVotes(MainActivity.this, view, movieModel.getImdbVotes());
-            }
-        });
     }
 }

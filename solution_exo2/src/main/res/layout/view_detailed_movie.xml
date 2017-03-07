@@ -126,7 +126,6 @@
             android:layout_marginRight="@dimen/spacing_base"
             android:layout_toLeftOf="@id/detailed_movie_imdb_rating"
             android:layout_toStartOf="@id/detailed_movie_imdb_rating"
-            android:onClick="@{(view) -> model.onImdbClicked(view)}"
             android:src="@drawable/icon_imdb"
             tools:ignore="ContentDescription" />
 
