@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -24,6 +25,7 @@ import fr.soat.demo.moviesmodel.business.filters.SearchFilter;
 import fr.soat.demo.moviesmodel.business.filters.TypeFilter;
 import fr.soat.demo.moviesmodel.model.CulturalType;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
+import fr.soat.demo.moviesmodel.utils.PopupUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private String searchString = null;
     private CulturalType selectedType = null;
     private float rating = 0.0f;
+    private int totalResult = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 updateSearchCount();
             }
         });
+
+        // Result
+        filterSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupUtils.showPopupForItemCount(MainActivity.this, view, totalResult);
+            }
+        });
     }
 
     private void updateSearchCount() {
@@ -158,12 +169,22 @@ public class MainActivity extends AppCompatActivity {
             filters.add(new RatingFilter(rating));
         }
 
+        // Result
+        filterSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupUtils.showPopupForItemCount(MainActivity.this, view, totalResult);
+            }
+        });
+
         List<MovieSeriesModel> filteredMovieSeries = movieSeriesBusinessService.getFilteredMovieSeries(filters);
+        totalResult = filteredMovieSeries.size();
+
         String resultCount;
-        if(filteredMovieSeries.isEmpty()){
+        if(totalResult == 0){
             resultCount = getString(R.string.search_button_no_result);
         } else {
-            resultCount = getResources().getQuantityString(R.plurals.search_button_result, filteredMovieSeries.size(), filteredMovieSeries.size());
+            resultCount = getResources().getQuantityString(R.plurals.search_button_result, totalResult, totalResult);
         }
         filterSearchButton.setText(resultCount);
     }
