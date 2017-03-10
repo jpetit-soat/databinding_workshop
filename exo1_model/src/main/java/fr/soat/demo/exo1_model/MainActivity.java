@@ -1,4 +1,4 @@
-package fr.soat.demo.exo1_helloworld;
+package fr.soat.demo.exo1_model;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

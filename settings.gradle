@@ -1,1 +1,1 @@
-include ':moviesmodel', ':exo1_model', ':exo2_viewmodel', ':exo3_dynamic_views', ':exo4_bindingadapters', ':exo5_simplified_recyclerview', ':exo0_hello_world', ":solution_exo1", ":solution_exo2", ":solution_exo3", ":solution_exo4",":solution_exo5"
+include ':moviesmodel', ':exo1_model', ':exo2_viewmodel', ':exo3_dynamic_views', ':exo4_bindingadapters', ':exo5_simplified_recyclerview', ':exo0', ":solution_exo1", ":solution_exo2", ":solution_exo3", ":solution_exo4",":solution_exo5"
