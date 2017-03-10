@@ -1,4 +1,4 @@
-package fr.soat.demo.exo0_hello_world;
+package fr.soat.demo.exo0;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

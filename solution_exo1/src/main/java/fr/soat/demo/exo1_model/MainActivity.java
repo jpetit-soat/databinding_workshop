@@ -1,11 +1,11 @@
-package fr.soat.demo.exo1_helloworld;
+package fr.soat.demo.exo1_model;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import fr.soat.demo.exo1_helloworld.databinding.ViewPosterBinding;
+import fr.soat.demo.exo1_model.databinding.ViewPosterBinding;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewPosterBinding binding = DataBindingUtil.setContentView(this, R.layout.view_poster);
+       ViewPosterBinding binding = DataBindingUtil.setContentView(this, R.layout.view_poster);
 
         // This object contains all the needed data for the view
         PosterModel posterModel = getPosterModel();
