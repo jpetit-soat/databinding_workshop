@@ -22,17 +22,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // TODO Replace with right method coming from DataBindingUtils
         setContentView(R.layout.view_poster);
-
-        // TODO This method is not needed with DataBinding
-        initFields();
 
         // This object contains all the needed data for the view
         PosterModel posterModel = getPosterModel();
 
-        // TODO The data must be given to the binding
+        initFields();
         initData(posterModel);
     }
 
