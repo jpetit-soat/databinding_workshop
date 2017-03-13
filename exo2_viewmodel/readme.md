@@ -129,14 +129,10 @@ On lui fournit la variable depuis le layout parent en utilisant l’attribut iss
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#includes
 
-## Exercice
+## Exercice 
 
 1. Créer les méthodes au sein du ViewModel `DetailedMovieViewModel` qui présente les données du `MovieSeriesModel` comme le fait la méthode `initDetailedInfo`
 2. Faire égalemment que la vue `view_poster` soit liée par le biais de la variable.
-
-## Exercice bonus
-Un des gros avantages du VIewModel, c’est sa testabilité. On peut facilement créer un ViewModel qui initialisera des id de ressource (R.string, R.drawable etc.) qui seront transformé en valeur (String, Drawable etc. grâce à l’objet Resources) lorsqu’elles seront appelé par le binding (en passant le Context en paramètre de la méthode d’appel).
-
-Dans notre exemple cependant, le Context est passé dans le constructeur, ce qui empêche de le rendre testable.
-
-1. Transformez le ViewModel pour que le Context soit transmis au cas par cas par le binding et ne soit plus directement présent dans le constructeur.
+3. **Bonus** Modifier la classe `DetailedMovieViewModel` ainsi que `view_detailed_movie` pour que la classe n'ait aucune référence au `Context`
+    
+    Pour vous aidez : https://developer.android.com/topic/libraries/data-binding/index.html#resources
