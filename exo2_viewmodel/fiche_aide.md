@@ -1,7 +1,6 @@
 # Exercice 2
 
 ## Rappels
-
 ### Objectif d’un ViewModel
 
 L’objectif principal d’un ViewModel est de **fournir un intermédiaire entre la donnée modèle** (ici par exemple, l’objet MovieSeriesModel) **et la vue** (ici, view_detailed_movie).
