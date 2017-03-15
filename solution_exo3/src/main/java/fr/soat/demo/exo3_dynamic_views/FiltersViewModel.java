@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.text.TextUtils;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import fr.soat.demo.moviesmodel.business.filters.SearchFilter;
 import fr.soat.demo.moviesmodel.business.filters.TypeFilter;
 import fr.soat.demo.moviesmodel.model.CulturalType;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
+import fr.soat.demo.moviesmodel.utils.PopupUtils;
 
 /**
  * Created by yann_huriez on 07/02/17.
@@ -28,13 +30,12 @@ public class FiltersViewModel extends BaseObservable {
     private String searchString = null;
     private CulturalType selectedType = null;
     private int ratingProgress = 0;
+    private int totalResult = 0;
 
     public FiltersViewModel(Context context) {
         this.context = context;
         movieSeriesBusinessService = new MovieSeriesBusinessService(context);
     }
-
-    // TODO Create methods here to allow the layout to manipulate data
 
     public String getSearchString() {
         return searchString;
@@ -89,13 +90,20 @@ public class FiltersViewModel extends BaseObservable {
         }
 
         List<MovieSeriesModel> filteredMovieSeries = movieSeriesBusinessService.getFilteredMovieSeries(filters);
+        totalResult = filteredMovieSeries.size();
+
         String resultCount;
-        if(filteredMovieSeries.isEmpty()){
+        if(totalResult == 0){
             resultCount = context.getString(R.string.search_button_no_result);
         } else {
-            resultCount = context.getResources().getQuantityString(R.plurals.search_button_result, filteredMovieSeries.size(), filteredMovieSeries.size());
+            resultCount = context.getResources().getQuantityString(R.plurals.search_button_result, totalResult, totalResult);
         }
+
         return resultCount;
+    }
+
+    public void onResultButtonClicked(View view){
+        PopupUtils.showPopupForItemCount(context, view, totalResult);
     }
 
     private int convertCulturalTypeToButtonId(CulturalType type){
