@@ -28,48 +28,12 @@
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/secondary_text_light" />
 
-        <RadioGroup
-            android:id="@+id/view_filter_global_radio_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view_filter_search_field"
-            android:checkedButton="@={model.selectedType}"
-            android:orientation="horizontal"
-            android:paddingEnd="@dimen/spacing_large"
-            android:paddingLeft="@dimen/spacing_large"
-            android:paddingRight="@dimen/spacing_large"
-            android:paddingStart="@dimen/spacing_large"
-            android:weightSum="3">
-
-            <RadioButton
-                android:id="@+id/view_filter_all_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/filter_all" />
-
-            <RadioButton
-                android:id="@+id/view_filter_movie_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/filter_movie" />
-
-            <RadioButton
-                android:id="@+id/view_filter_series_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/filter_series" />
-
-        </RadioGroup>
-
         <TextView
             android:id="@+id/view_filter_score_label"
             style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view_filter_global_radio_group"
+            android:layout_below="@id/view_filter_search_field"
             android:layout_marginLeft="@dimen/spacing_large"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_large"

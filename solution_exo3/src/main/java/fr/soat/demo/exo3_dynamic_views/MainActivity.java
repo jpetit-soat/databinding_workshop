@@ -2,7 +2,6 @@ package fr.soat.demo.exo3_dynamic_views;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 
@@ -22,8 +20,6 @@ import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.business.filters.AbstractMovieSeriesFilter;
 import fr.soat.demo.moviesmodel.business.filters.RatingFilter;
 import fr.soat.demo.moviesmodel.business.filters.SearchFilter;
-import fr.soat.demo.moviesmodel.business.filters.TypeFilter;
-import fr.soat.demo.moviesmodel.model.CulturalType;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.utils.PopupUtils;
 
@@ -39,12 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar filterScoreSeekbar;
     private RatingBar filterRating;
 
-    private RadioGroup filterRadioGroup;
-
     private Button filterSearchButton;
 
     private String searchString = null;
-    private CulturalType selectedType = null;
     private float rating = 0.0f;
     private int totalResult = 0;
 
@@ -86,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         filterScoreSeekbar = (SeekBar) findViewById(R.id.view_filter_score_seekbar);
         filterRating = (RatingBar) findViewById(R.id.view_filter_imdb_rating);
-
-        filterRadioGroup = (RadioGroup) findViewById(R.id.view_filter_global_radio_group);
 
         filterSearchButton = (Button) findViewById(R.id.view_filter_result_button);
     }
@@ -132,16 +123,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Type
-        filterRadioGroup.check(convertCulturalTypeToButtonId(selectedType));
-        filterRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                selectedType = convertButtonIdToCulturalType(radioGroup.getCheckedRadioButtonId());
-                updateSearchCount();
-            }
-        });
-
         // Result
         filterSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
         // Search
         if(!TextUtils.isEmpty(searchString)){
             filters.add(new SearchFilter(searchString));
-        }
-
-        // Type
-        if(selectedType != null){
-            filters.add(new TypeFilter(selectedType));
         }
 
         // Rating
@@ -187,30 +163,5 @@ public class MainActivity extends AppCompatActivity {
             resultCount = getResources().getQuantityString(R.plurals.search_button_result, totalResult, totalResult);
         }
         filterSearchButton.setText(resultCount);
-    }
-
-
-    public int convertCulturalTypeToButtonId(CulturalType type){
-        if(type != null) {
-            switch (type) {
-                case MOVIE:
-                    return R.id.view_filter_movie_button;
-                case SERIES:
-                    return R.id.view_filter_series_button;
-            }
-        }
-        return R.id.view_filter_all_button;
-    }
-
-    public CulturalType convertButtonIdToCulturalType(int buttonId){
-        switch (buttonId){
-            case R.id.view_filter_all_button:
-                return null;
-            case R.id.view_filter_movie_button:
-                return CulturalType.MOVIE;
-            case R.id.view_filter_series_button:
-                return CulturalType.SERIES;
-        }
-        return null;
     }
 }

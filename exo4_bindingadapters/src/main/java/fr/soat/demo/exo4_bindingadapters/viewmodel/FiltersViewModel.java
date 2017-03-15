@@ -15,8 +15,6 @@ import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.business.filters.AbstractMovieSeriesFilter;
 import fr.soat.demo.moviesmodel.business.filters.RatingFilter;
 import fr.soat.demo.moviesmodel.business.filters.SearchFilter;
-import fr.soat.demo.moviesmodel.business.filters.TypeFilter;
-import fr.soat.demo.moviesmodel.model.CulturalType;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 
 
@@ -31,7 +29,6 @@ public class FiltersViewModel extends BaseObservable {
     private MovieSeriesBusinessService movieSeriesBusinessService;
 
     private String searchString = null;
-    private CulturalType selectedType = null;
     private int ratingProgress = 0;
 
     private final List<MovieSeriesModel> filteredMovieSeries = new ArrayList<>();
@@ -48,15 +45,6 @@ public class FiltersViewModel extends BaseObservable {
 
     public void setSearchString(String searchString) {
         this.searchString = searchString;
-        notifyPropertyChanged(BR.resultCount);
-    }
-
-    public int getSelectedType() {
-        return convertCulturalTypeToButtonId(selectedType);
-    }
-
-    public void setSelectedType(int buttonId) {
-        this.selectedType = convertButtonIdToCulturalType(buttonId);
         notifyPropertyChanged(BR.resultCount);
     }
 
@@ -84,11 +72,6 @@ public class FiltersViewModel extends BaseObservable {
             filters.add(new SearchFilter(searchString));
         }
 
-        // Type
-        if(selectedType != null){
-            filters.add(new TypeFilter(selectedType));
-        }
-
         // Rating
         if(ratingProgress >= 0){
             filters.add(new RatingFilter(ratingProgress));
@@ -111,29 +94,4 @@ public class FiltersViewModel extends BaseObservable {
             listener.onShowMovieSeries(filteredMovieSeries);
         }
     }
-
-    private int convertCulturalTypeToButtonId(CulturalType type){
-        if(type != null) {
-            switch (type) {
-                case MOVIE:
-                    return R.id.view_filter_movie_button;
-                case SERIES:
-                    return R.id.view_filter_series_button;
-            }
-        }
-        return R.id.view_filter_all_button;
-    }
-
-    private CulturalType convertButtonIdToCulturalType(int buttonId){
-        switch (buttonId){
-            case R.id.view_filter_all_button:
-                return null;
-            case R.id.view_filter_movie_button:
-                return CulturalType.MOVIE;
-            case R.id.view_filter_series_button:
-                return CulturalType.SERIES;
-        }
-        return null;
-    }
-
 }
