@@ -169,14 +169,14 @@ Seul quelques attributs permettent aujourd’hui d’utiliser le binding à doub
 
 ### Les données
 
-Lorsqu'un objet est mis à jour, après l'affichage de l'écran, cela ne rafraîchit pas la vue.
-Pour que la vue se rafraîchisse, il faut que la donnée soit observable.
+Lorsqu'un objet est mis à jour dans le ViewModel après l'affichage de l'écran (quand l'utilisateur a changé un texte par exemple), cela ne rafraîchit pas automatiquement la vue.
+
+Pour que la vue se rafraîchisse, il faut que le ViewModel fournisse des données **"observable"**.
 
 Il y a trois manières pour que la donnée soit observable :
 
-* qu'elle hérite de **BaseObservable** 
-* que pour des type simple qu'elle soit contenue dans des **ObservableFields**
-* que pour les collections qu'elle soit contenue dans des **Observable Collections**
+* que le ViewModel hérite de **BaseObservable**
+* que les valeurs du ViewModel soient contenue dans des **ObservableFields**, ou des **Observable Collections** s'il s'agit de collections (List, Map etc.).
 
 #### Observable Objects
 #### ObservableFields
