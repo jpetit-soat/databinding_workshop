@@ -2,13 +2,13 @@
 
 ## Objectif
 
-Nous allons voir ici comment gérer des évenements dans une architecture de type MVVM, et comment mettre à jour la vue lorsque la donnée change. 
+Nous allons voir ici comment **gérer des évenements** dans une architecture de type MVVM, et comment mettre à jour la vue lorsque la donnée change.
 
 ## Rappel
 
 ### Gestion d'évenement dans un ViewModel  
 
-Pour la Gestion d'évenement, un ViewModel s'appuie sur la puissance du Data Binding d'Android.
+Pour la gestion d'évenement, un ViewModel s'appuie sur la puissance du Data Binding d'Android.
 
 Elle peut être faite de trois manières : 
 * Par référence de méthode
@@ -28,18 +28,18 @@ public class Presenter {
 ```
 ```xml
 <Button android:layout_width="wrap_content" 
-                android:layout_height="wrap_content« 
-               android:onClick="@{presenter::onSaveClick}" />
+                android:layout_height="wrap_content"
+                android:onClick="@{presenter::onSaveClick}" />
 ```
 
 <br/>
 
-La signature de la méthode doit correspondre exactement à celle attendu pour l’action demandé (par exemple pour un *onClick*, on attend une méthode ayant un View en premier paramètre).
+La signature de la méthode doit correspondre exactement à celle attendu pour l’action demandé (par exemple pour un `onClick`, on attend une méthode ayant un View en premier paramètre).
 La méthode a besoin d’être implémenté (ne peut pas être une référence sur une méthode abstraite).
 
 #### Binding de listener
 
-Le binding de listener permet de créer un listener à la façon d’une lambda, qui appellera ensuite une fonction dans une variable du binding : 
+Le binding de listener permet de créer un listener à la façon d’une lambda, qui appellera une fonction dans une variable du binding :
 
 <br/>
 
@@ -50,8 +50,8 @@ public interface Presenter {
 ```
 ```xml
 <Button android:layout_width="wrap_content" 
-                android:layout_height="wrap_content” 
-               android:onClick="@{() -> presenter.onSaveClick()}" />
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> presenter.onSaveClick()}" />
 ```
 
 <br/>
@@ -77,20 +77,20 @@ public interface Presenter {
        <variable name="task" type="com.example.Task"/>
    </data>
    <Button android:layout_width="wrap_content" 
-                android:layout_height="wrap_content” 
+                android:layout_height="wrap_content"
                 android:onClick="@{() -> presenter.onSaveClick(task)}" />
 </layout>
 ```
 
 <br/>
 
-Il est également possible de récupérer les paramètres du listener appelant (ici, le OnClickListener, avec comme paramètre la vue) : 
+Il est également possible de récupérer les paramètres du listener appelant (ici, le `OnClickListener`, avec comme paramètre la vue) :
 
 <br/>
 
 ```xml
 <Button android:layout_width="wrap_content" 
-                android:layout_height="wrap_content” 
+                android:layout_height="wrap_content"
                 android:onClick="@{(view) -> presenter.onSaveClick(view)}" />
 ```
 
@@ -106,11 +106,11 @@ Enfin, il est également possible de faire référence à une autre vue existant
        android:layout_width="match_parent"
        android:layout_height="match_parent">
        <TextView android:id="@+id/name_text_view" 
-                android:layout_width="wrap_content” 
-                android:layout_height="wrap_content” />
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
        <Button android:layout_width="wrap_content" 
-                android:layout_height="wrap_content” 
-                android:onClick="@{() -> presenter.onSaveClick(nameTextView)}" />
+               android:layout_height="wrap_content"
+               android:onClick="@{() -> presenter.onSaveClick(nameTextView)}" />
    </LinearLayout>
 ```
 
@@ -140,7 +140,7 @@ public class TextViewModel {
 ```xml
 <EditText android:layout_width="wrap_content" 
                   android:layout_height="wrap_content" 
-                 android:text="@={model.textValue}" />
+                  android:text="@={model.textValue}" />
 ```
 
 <br/>
@@ -169,9 +169,11 @@ Seul quelques attributs permettent aujourd’hui d’utiliser le binding à doub
 
 ### Les données
 
-Losqu'un objet est mise à jour, après l'affichage de l'écran, celà ne rafraîchit pas la vue.
+Lorsqu'un objet est mis à jour, après l'affichage de l'écran, cela ne rafraîchit pas la vue.
 Pour que la vue se rafraîchisse, il faut que la donnée soit observable.
-Il y a trois manières pour que la donnée soit observable.
+
+Il y a trois manières pour que la donnée soit observable :
+
 * qu'elle hérite de **BaseObservable** 
 * que pour des type simple qu'elle soit contenue dans des **ObservableFields**
 * que pour les collections qu'elle soit contenue dans des **Observable Collections**
@@ -182,6 +184,6 @@ Il y a trois manières pour que la donnée soit observable.
 
 ## Exercice
 
-1. Gérer les interactions dans la classe `FiltersViewModel` tel qu'elles sont géré dans `initListeners()`
-2. Faire en sorte que toute les propriétés nécessaires pour `viewFilter` soit implémenté par `FiltersViewModel` et que lorsque la donnée est modifiée, la vue se mette bien à jour.
-3. **Bonus** en gradant le même comportement, supprimer l'héritage à la classe `BaseObservable`
+1. Gérez les interactions (clic, input de texte...) dans la classe `FiltersViewModel` tel qu'elles sont gérées dans la méthode `initListeners()`.
+2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran.
+3. **Bonus** : en gradant le même comportement, supprimer l'héritage à la classe `BaseObservable`.
