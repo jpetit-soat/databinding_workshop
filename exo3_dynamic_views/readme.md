@@ -185,5 +185,5 @@ Il y a trois manières pour que la donnée soit observable :
 ## Exercice
 
 1. Gérez les interactions (clic, input de texte...) dans la classe `FiltersViewModel` tel qu'elles sont gérées dans la méthode `initListeners()`.
-2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran.
-3. **Bonus** : en gradant le même comportement, supprimer l'héritage à la classe `BaseObservable`.
+2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran, en faisant hériter la classe de `BaseObservable`.
+3. **Bonus** : Supprimez l'héritage vers la classe `BaseObservable` et remplacez-le par une autre méthode.
