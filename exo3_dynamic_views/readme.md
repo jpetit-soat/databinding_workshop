@@ -179,8 +179,60 @@ Il y a trois manières pour que la donnée soit observable :
 * que les valeurs du ViewModel soient contenue dans des **ObservableFields**, ou des **Observable Collections** s'il s'agit de collections (List, Map etc.).
 
 #### Observable Objects
+
+Le moyen le plus complet de gérer les mises à jour est de faire hériter son ViewModel de la classe `BaseObservable`.
+
+Pour gérer la mise à jour d'un champ du ViewModel, il est nécessaire de lui appliquer l'annotation `@Bindable` (soit sur le champ s'il est public, soit sur son getter s'il est encapsulé).
+
+A la compilation, les champs annotés `@Bindable` génèrent un id associé à la classe BR (équivalent de la classe R pour le Data Binding).
+Cet identifiant, enfin, pourra être utilisé pour effectuer la mise à jour grâce à la méthode `notifyPropertyChanged(int)`, provenant de la classe `BaseObservable`.
+
+
+```java
+public class User extends BaseObservable {
+
+   private String name;
+
+   @Bindable
+   public String getName() {
+       return this.name;
+   }
+
+   public void setLastName(String lastName) {
+       this.lastName = lastName;
+       notifyPropertyChanged(BR.lastName);
+   }
+}
+```
+
+Il est également possible de mettre à jour tous les champs `@Bindable` d'un seul coup, grâce à la méthode globale `notifyChange()`
+
 #### ObservableFields
-#### Observable Collections
+
+La classe `ObservableField` hérite de la classe `BaseObservable` et utilise les mêmes mécanismes que ceux décrit précédemment, à la différence qu'ils n'agissent que sur un seul champ.
+
+Ce qui signifie qu'un objet `ObservableField` met à jour automatiquement la vue à chaque fois que la donnée change.
+
+
+```java
+private static class User {
+   public final ObservableField<String> name = new ObservableField<>();
+   public final ObservableInt age = new ObservableInt();
+}
+```
+
+Comme la donnée utile est encapsulée, il est nécessaire de passer par des getters / setters pour y accéder.
+
+Faire un `set()` de la donnée notifie la vue du changement.
+
+```java
+user.name.set("Google");
+int age = user.age.get();
+```
+
+Il existe également des Observable Collections, qui se seront pas abordé dans ces exercices. Ils fonctionnent de la même façon que les `Collection`, et mettent à jour la vue à chaque modification de la collection.
+
+Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#observable_objects
 
 ## Exercice
 
