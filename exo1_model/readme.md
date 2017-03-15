@@ -1,8 +1,8 @@
 # Exercice 1 : Data Binding et Variable
 
-Pour cet exercice et les suivants, nous avons au préalable mis en place la couche logique dans le module moviesmodel, qui est inclus dans chaque module d'exercice, afin que nous puissions nous concentrer uniquement sur la mise en place du data binding.
+Pour cet exercice et les suivants, nous avons au préalable mis en place la couche logique dans le module `moviesmodel`, qui est inclus dans chaque module d'exercice, afin que nous puissions nous concentrer uniquement sur la mise en place du data binding.
 
-l'ensemble de la couche se trouve dans le package `fr.soat.demo.moviesmodel`
+L'ensemble de la couche se trouve dans le package `fr.soat.demo.moviesmodel`
 
 Dans cet exercice, nous allons afficher un poster de film ainsi que quelques informations concernant le concernant.
 
@@ -17,7 +17,7 @@ Nous verrons dans cet exercice :
 
 ### Syntaxe des ressources
 
-Il est possible d'utiliser les ressources de manière plus avancée dans le layout avec le DataBinding : 
+Il est possible d'utiliser les ressources de manière plus avancée dans le layout avec le Data Binding :
 
 ```xml
 <TextView
@@ -26,7 +26,7 @@ Il est possible d'utiliser les ressources de manière plus avancée dans le layo
         android:text="@{@string/a_text_resource}"/>
 ```
 
-Cette méthode peut sembler inutile (on peut très bien faire *android:text="@string/a_text_resource"*, sans databinding) mais procéder de la sorte permet d’utiliser des String paramétrés : 
+Cette méthode peut sembler inutile (on peut très bien faire `android:text="@string/a_text_resource"`, sans databinding) mais procéder de la sorte permet d’utiliser des String paramétrés :
 
 ```xml
 <TextView
@@ -48,16 +48,16 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
 
 ## Exercice
 
-1. Créer le binding de l'objet `posterModel` pour que celà continue à fonctionner exactement comme actuellement en supprimant les deux methodes suivantes :
+1. Créez le binding de l'objet `PosterModel` pour que cela continue à fonctionner exactement comme actuellement en supprimant les deux methodes suivantes :
     * `initFields();` 
     * `initData(posterModel);`
     
-2. Pour aller plus loin, n'utiliser plus les méthodes qui permettent le fomattage :
+2. Pour aller plus loin, n'utilisez plus les méthodes qui permettent le fomattage :
     * `getFormattedDate` 
     * `getFormattedGenres` 
     * `getFormattedActors`
     
-   Formatter les propriétés suivantes directement depuis votre vue.
+   A la place, formattez les propriétés suivantes directement depuis fichier de layout :
    * `date`
    * `genres`
    * `actors`

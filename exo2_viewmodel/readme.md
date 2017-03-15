@@ -2,24 +2,24 @@
 
 ## Objectif
 
-Dans le premier exercice nous avons mis en place du Data Binding, nous avons pu observé que la logique de présentation de la vue (formattage de données) était soit défini dans la vue, soit dans le modèle.
-* Le modèle a dans le premier cas la responsabilité de décrire la donnée mais également de décrire comment afficher une donnée
-* La vue contient dans le second cas une logique
+Dans le premier exercice nous avons mis en place du Data Binding, nous avons pu observer que la logique de présentation de la vue (formattage de données) était soit défini dans la vue, soit dans le modèle.
+* Le **modèle** a dans le premier cas la responsabilité de décrire la donnée mais également de décrire comment afficher une donnée
+* La **vue** contient dans le second cas une logique
 
 Une des bonnes pratiques en conception d'application et de respecter le principe de responsabilité unique.
-* Le modèle ne doit donc qu'avoir la responsabilité de décrire la donnée
-* La vue ne doit pas contenir de logique
+* Le **modèle** ne doit donc qu'avoir la responsabilité de décrire la donnée
+* La **vue** ne doit pas contenir de logique
 
 Pour répondre à cette problèmatique il y a plusieurs patrons de conception MVC, MVP mais nous allons nous concentrer sur celui qui s'appuie sur le binding.
 
 ## Rappels
 ### MVVM (Model-View-ViewModel)
 #### Model
-La donnée modèle (ici par exemple, l’objet MovieSeriesModel)
+La donnée modèle (ici par exemple, l’objet `MovieSeriesModel`)
 #### View
-La vue (ici, view_detailed_movie)
+La vue (ici, `view_detailed_movie`)
 #### ViewModel
-C'est une abstraction de la vue qui **fournit un intermédiaire entre le modèle et la vue** et qui s’appuie sur la puissance du binding pour mettre à disposition de la vue les données du modèle.
+C'est une abstraction de la vue qui **fournit un intermédiaire entre le modèle et la vue** et qui s’appuie sur la puissance du Data Binding pour mettre à disposition de la vue les données du modèle.
 
 Cet intermédiaire a deux rôles : 
 * **Formater la donnée modèle** pour qu’elle soit correctement géré par la vue. Par exemple, en concaténant une liste de String en un seul String, un id de drawable en objet Drawable ou encore 
@@ -31,7 +31,7 @@ Dans cet exercice, nous nous intéresserons au premier rôle. Le second sera dé
 ### Utilisation des ressources
 
 
-Il n’est pas possible d’utiliser directement les id de ressources via le databinding. Par exemple le code suivant ne fonctionne pas :
+Il n’est pas possible d’utiliser directement les id de ressources via le Data Binding. Par exemple le code suivant ne fonctionne pas :
 
 
 ```java
@@ -84,7 +84,7 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
 
 ### Inclusion de layouts
 
-Il est possible d’utiliser la balise \<include\> avec du DataBinding : 
+Il est possible d’utiliser la balise `<include>` avec du DataBinding :
 
 <br/>
 
@@ -121,9 +121,9 @@ Il est possible d’utiliser la balise \<include\> avec du DataBinding :
 
 <br/>
 
-Dans cet exemple, on “inclut” le layout *“@layout/name”* qui lui-même utilise le DataBinding, avec comme variable un objet User appelé “user” (comme pour le layout parent). 
+Dans cet exemple, on “inclut” le layout `@layout/name` qui lui-même utilise le Data Binding, avec comme variable un objet User appelé `user` (comme pour le layout parent).
 
-On lui fournit la variable depuis le layout parent en utilisant l’attribut issue du nom de la variable à setter (bind:user pour le nom de variable “User” dans *view_name.xml*).
+On lui fournit la variable depuis le layout parent en utilisant l’attribut issue du nom de la variable à setter (`bind:user` pour le nom de variable `user` dans `view_name.xml`).
 
 <br/>
 
@@ -131,8 +131,8 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
 
 ## Exercice 
 
-1. Créer les méthodes au sein du ViewModel `DetailedMovieViewModel` qui présente les données du `MovieSeriesModel` comme le fait la méthode `initDetailedInfo`
+1. Créez les méthodes au sein du ViewModel `DetailedMovieViewModel` pour présenter les données du `MovieSeriesModel` comme le fait la méthode `initDetailedInfo`.
 2. Faire égalemment que la vue `view_poster` soit liée par le biais de la variable.
-3. **Bonus** Modifier la classe `DetailedMovieViewModel` ainsi que `view_detailed_movie` pour que la classe n'ait aucune référence au `Context`
+3. **Bonus** : Modifier la classe `DetailedMovieViewModel` ainsi que `view_detailed_movie` pour que le ViewModel ne soit pas construit avec un `Context`.
     
     Pour vous aidez : https://developer.android.com/topic/libraries/data-binding/index.html#resources
