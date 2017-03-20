@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataBindingWorkshop.iml" filepath="$PROJECT_DIR$/DataBindingWorkshop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/databinding_workshop.iml" filepath="$PROJECT_DIR$/databinding_workshop.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo0/exo0.iml" filepath="$PROJECT_DIR$/exo0/exo0.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo1_model/exo1_model.iml" filepath="$PROJECT_DIR$/exo1_model/exo1_model.iml" />
       <module fileurl="file://$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" filepath="$PROJECT_DIR$/exo2_viewmodel/exo2_viewmodel.iml" />

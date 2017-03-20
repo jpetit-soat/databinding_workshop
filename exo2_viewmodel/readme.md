@@ -132,7 +132,7 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
 ## Exercice 
 
 1. Créez les méthodes au sein du ViewModel `DetailedMovieViewModel` pour présenter les données du `MovieSeriesModel` comme le fait la méthode `initDetailedInfo`.
-2. Faire égalemment que la vue `view_poster` soit liée par le biais de la variable.
+2. Faire également que la vue `view_poster` soit liée par le biais de la variable.
 3. **Bonus** : Modifier la classe `DetailedMovieViewModel` ainsi que `view_detailed_movie` pour que le ViewModel ne soit pas construit avec un `Context`.
     
     Pour vous aidez : https://developer.android.com/topic/libraries/data-binding/index.html#resources

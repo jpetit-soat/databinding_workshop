@@ -230,12 +230,12 @@ user.name.set("Google");
 int age = user.age.get();
 ```
 
-Il existe également des Observable Collections, qui se seront pas abordé dans ces exercices. Ils fonctionnent de la même façon que les `Collection`, et mettent à jour la vue à chaque modification de la collection.
+Il existe également des Observable Collections, qui se seront pas abordé dans ces exercices. Ils fonctionnent de la même façon que les `Collection` et mettent à jour la vue à chaque modification de la collection.
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#observable_objects
 
 ## Exercice
 
 1. Gérez les interactions (clic, input de texte...) dans la classe `FiltersViewModel` tel qu'elles sont gérées dans la méthode `initListeners()`.
-2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran, en faisant hériter la classe de `BaseObservable`.
-3. **Bonus** : Supprimez l'héritage vers la classe `BaseObservable` et remplacez-le par une autre méthode.
+2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran, en utilisant un héritage vers la classe `BaseObservable`.
+3. **Bonus** : Gérez la mise à jour de la vue sans utiliser l'héritage vers la classe `BaseObservable`.
