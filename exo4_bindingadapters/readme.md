@@ -12,7 +12,7 @@ Les **Binding Adapters** permettent d’effectuer des actions depuis le fichier 
 
 La syntaxe d’un Binding Adapter est la suivante :
 
-<br/>
+
 
 ```java
 @BindingAdapter("margin")
@@ -32,17 +32,17 @@ public static void setMargin(View view, float margin) {
     app:margin="@{20.0f}"/>
 ```
 
-<br/>
+
 
 Il est nécessaire de déclarer le namespace de l’application (*“xmlns:app="http://schemas.android.com/apk/res-auto””*) dans la balise “layout”, et de l’utiliser à l’appel du BindingAdapter.
 
 *Note : l'auto-complétion n’est pas disponible pour l’utilisation des Binding Adapters).*
 
-<br/>
+
 
 Il est possible de déclarer plusieurs paramètres dans un Binding Adapter : 
 
-<br/>
+
 
 ```java
 @BindingAdapter(value = {"marginLeft", "marginTop", "marginRight", "marginBottom"}, requireAll = false)
@@ -53,17 +53,17 @@ public static void setMargin(View view, float marginLeft, float marginTop, float
 }
 ```
 
-<br/>
+
 
 L’attribut “*requireAll*” est facultatif, il permet de définir qu’il n’est pas nécessaire d’avoir tous les paramètres pour pouvoir utiliser le BindingAdapter (dans le cas contraire, si on utilise qu’un seul des paramètres une erreur apparaîtra à la compilation).
 
 *Note : dans notre exemple, vu qu'on utilise des primitifs, leur valeur seront de 0 s'ils n'ont pas été renseigné dans le layout. S'il s'agit d'un objet, la valeur sera null.*
 
-<br/>
+
 
 Enfin, il est également possible de réutiliser la valeur précédemment passé au Binding Adapter : 
 
-<br/>
+
 
 ```java
 @BindingAdapter("margin")
@@ -76,11 +76,11 @@ public static void setMargin(View view, float oldMargin, float newMargin) {
 }
 ```
 
-<br/>
+
 
 L’utilité principale est d’éviter de redéfinir une nouvelle fois une valeur pour une vue, pour éviter de répéter une opération coûteuse (faire un `invalidate()` par exemple) ou ajouter une seconde fois un listener.
 
-<br/>
+
 
 **Documentation** : https://developer.android.com/topic/libraries/data-binding/index.html#custom_setters
 

@@ -26,13 +26,13 @@ Néanmoins, afin de mettre en place le binding de RecyclerView, il est important
 
 Dans les premiers exercices nous avons vu la méthode de création suivante :
 
-<br/>
+
 
 ```java
 MainActivityBinding binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
 ```
 
-<br/>
+
 
 Cette méthode ne marche que pour faire le binding d’un layout à une activité. Si on avait voulu faire la même chose avec un fragment, nous aurions utilisé cette méthode :
 
@@ -41,11 +41,11 @@ Cette méthode ne marche que pour faire le binding d’un layout à une activit�
 MainFragmentBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.main_fragment, parentView, false);
 ```
 
-<br/>
+
 
 Cette méthode est similaire à la méthode *inflate()* de la classe LayoutInflater. Cette méthode est également utilisé pour créer les vues de la RecyclerView (ou d’une ListView) en temps normal, nous pouvons donc l’appliquer à l’identique dans le cas du DataBinding.
 
-<br/>
+
 
 Enfin, il est également possible de créer un binding à partir de la classe généré à la compilation :
 
@@ -54,7 +54,7 @@ Enfin, il est également possible de créer un binding à partir de la classe g�
 MainFragmentBinding binding = MainFragmentBinding.inflate(getLayoutInflater(), parentView, false);
 ```
 
-<br/>
+
 
 La même classe permet également de faire le binding d’une vue existante :
 
@@ -63,11 +63,11 @@ La même classe permet également de faire le binding d’une vue existante :
 MainFragmentBinding binding = MainFragmentBinding.bind(view);
 ```
 
-<br/>
+
 
 En effet, les classes générés pour le binding sont créées avec des méthodes statique permettant d’instancier la classe correspondante, soit avec un LayoutInflater soit avec une vue existante.
 
-<br/>
+
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#generated_binding
 
@@ -80,7 +80,7 @@ Lorsqu’un binding est créé à la compilation, un autre élément est créé 
 
 Afin de donner sa variable à un binding de type inconnu, il faut utiliser la méthode setVariable() de la classe ViewDataBinding : 
 
-<br/>
+
 
 ```java
 private ViewDataBinding binding;
@@ -99,13 +99,13 @@ public void setViewModel(Object viewModel) {
 </layout>
 ```
 
-<br/>
+
 
 Précision importante : lorsque l’on fournit une variable à un binding, il ne met pas immédiatement à jour la vue. L’instruction est placé dans un *”Scheduler”* qui exécutera la mise à jour à la frame suivante (de la même façon qu’un Runnable passé à un Handler). 
 
 Pour que la vue soit immédiatement mise à jour (ce qui est voulu dans le cas d’un RecyclerView), il est nécessaire d’appeler la méthode *executePendingBindings()* : 
 
-<br/>
+
 
 ```java
 private ViewDataBinding binding;
@@ -116,11 +116,11 @@ public void setViewModel(Object viewModel) {
 }
 ```
 
-<br/>
+
 
 *(Note : Ce mécanisme est ce qui rend le DataBinding “Thread Safe” : il est tout à fait possible de modifier un ViewModel depuis un Thread en background, même si cette action doit modifier la vue du fait d’un BaseObservable ou d’un ObservableField.)*
 
-<br/>
+
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#advanced_binding
 

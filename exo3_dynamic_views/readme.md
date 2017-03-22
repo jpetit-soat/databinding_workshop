@@ -19,7 +19,7 @@ Elle peut être faite de trois manières :
 
 La référence de méthode permet de lier l’action d’une vue à une méthode existante dans une variable du binding : 
 
-<br/>
+
 
 ```java
 public class Presenter {
@@ -32,7 +32,7 @@ public class Presenter {
                 android:onClick="@{presenter::onSaveClick}" />
 ```
 
-<br/>
+
 
 La signature de la méthode doit correspondre exactement à celle attendu pour l’action demandé (par exemple pour un `onClick`, on attend une méthode ayant un View en premier paramètre).
 La méthode a besoin d’être implémenté (ne peut pas être une référence sur une méthode abstraite).
@@ -41,7 +41,7 @@ La méthode a besoin d’être implémenté (ne peut pas être une référence s
 
 Le binding de listener permet de créer un listener à la façon d’une lambda, qui appellera une fonction dans une variable du binding :
 
-<br/>
+
 
 ```java
 public interface Presenter {
@@ -54,7 +54,7 @@ public interface Presenter {
                 android:onClick="@{() -> presenter.onSaveClick()}" />
 ```
 
-<br/>
+
 
 La différence principale entre la référence de méthode et le binding de listener est le moment où l’implémentation du listener est évalué : 
 
@@ -63,7 +63,7 @@ La différence principale entre la référence de méthode et le binding de list
 
 Un autre intérêt du binding de listener est sa souplesse : il permet en effet de passer les paramètres de son choix depuis le XML : 
 
-<br/>
+
 
 ```java
 public interface Presenter {
@@ -82,11 +82,11 @@ public interface Presenter {
 </layout>
 ```
 
-<br/>
+
 
 Il est également possible de récupérer les paramètres du listener appelant (ici, le `OnClickListener`, avec comme paramètre la vue) :
 
-<br/>
+
 
 ```xml
 <Button android:layout_width="wrap_content" 
@@ -94,11 +94,11 @@ Il est également possible de récupérer les paramètres du listener appelant (
                 android:onClick="@{(view) -> presenter.onSaveClick(view)}" />
 ```
 
-<br/>
+
 
 Enfin, il est également possible de faire référence à une autre vue existant dans le layout. Il suffit d’y faire appel en paramètre en indiquant l’id de la vue en Pascal Case : 
 
-<br/>
+
 
 ```xml
 <LinearLayout
@@ -114,7 +114,7 @@ Enfin, il est également possible de faire référence à une autre vue existant
    </LinearLayout>
 ```
 
-<br/>
+
 
 **Documentation** : https://developer.android.com/topic/libraries/data-binding/index.html#event_handling
 
@@ -122,7 +122,7 @@ Enfin, il est également possible de faire référence à une autre vue existant
 
 Le binding à double sens permet de récupérer les données rentrées par un utilisateur, en liant une variable à un attribut qui gère à la fois la lecture et l’écriture : 
 
-<br/>
+
 
 ```java
 public class TextViewModel {
@@ -143,7 +143,7 @@ public class TextViewModel {
                   android:text="@={model.textValue}" />
 ```
 
-<br/>
+
 
 Dans les faits, cette syntaxe crée dans le binding un listener implicite qui modifiera la valeur de la variable bindé. En l'occurrence pour cet exemple, cela créera un listener *onTextChanged* qui mettra à jour la variable.
 
@@ -161,7 +161,7 @@ Seul quelques attributs permettent aujourd’hui d’utiliser le binding à doub
 * **TextView** 		    android:text
 * **TimePicker**		android:hour, android:minute
 
-<br/>
+
 
 **Documentation** : cette option n’est pas encore expliqué dans la documentation officielle, mais voici un bon article détaillant son fonctionnement et fournissant des informations complémentaires : https://halfthought.wordpress.com/2016/03/23/2-way-data-binding-on-android/
 

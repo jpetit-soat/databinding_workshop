@@ -46,13 +46,13 @@ public class TextViewModel {
         android:text="@{model.textValue}"/>
 ```
 
-<br/>
+
 
 Le compilateur interprétera ce code en formattant l’id (un integer) comme un string, et affichera l’id au lieu du texte.
 
 Pour avoir la bonne valeur, il faut fournir, par le biais du ViewModel, non pas l’id de ressource, mais la ressource elle-même :
 
-<br/>
+
 
 ```java
 public class TextViewModel {
@@ -76,17 +76,17 @@ public class TextViewModel {
         android:text="@{model.textValue}"/>
 ```
 
-<br/>
+
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#expression_language
 
-<br/>
+
 
 ### Inclusion de layouts
 
 Il est possible d’utiliser la balise `<include>` avec du DataBinding :
 
-<br/>
+
 
 ```xml
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -104,7 +104,7 @@ Il est possible d’utiliser la balise `<include>` avec du DataBinding :
 </layout>
 ```
 
-<br/>
+
 
 **view_name.xml**
 ```xml
@@ -119,13 +119,13 @@ Il est possible d’utiliser la balise `<include>` avec du DataBinding :
 </layout>
 ```
 
-<br/>
+
 
 Dans cet exemple, on “inclut” le layout `@layout/name` qui lui-même utilise le Data Binding, avec comme variable un objet User appelé `user` (comme pour le layout parent).
 
 On lui fournit la variable depuis le layout parent en utilisant l’attribut issue du nom de la variable à setter (`bind:user` pour le nom de variable `user` dans `view_name.xml`).
 
-<br/>
+
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#includes
 
