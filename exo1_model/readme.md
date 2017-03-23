@@ -15,6 +15,48 @@ Nous verrons dans cet exercice :
 
 ## Rappels
 
+### Utilisation du Context dans le fichier de layout
+
+Si vous devez utiliser une méthode d'une variable qui possède un paramètre, il est tout à fait possible d'appeler cette méthode avec son nom complet et une valeur en paramètre :
+
+```java
+public class User {
+
+    private String value;
+
+    public void getTextWithInt(int intValue){
+        return value + intValue;
+    }
+}
+```
+
+```xml
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{user.getValueWithInt(12)}"/>
+```
+
+Il est également possible de passer un objet `Context` en paramètre, depuis n'importe quel layout bindé : il suffit pour cela d'utiliser le mot-clé `context` :
+
+```java
+public class User {
+
+    private @StringRes int valueRes;
+
+    public void getText(Context context){
+        return context.getText(valueRes);
+    }
+}
+```
+
+```xml
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{user.getText(context)}"/>
+```
+
 ### Syntaxe des ressources
 
 Il est possible d'utiliser les ressources de manière plus avancée dans le layout avec le Data Binding :
