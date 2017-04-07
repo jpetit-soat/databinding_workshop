@@ -1,14 +1,10 @@
 package fr.soat.demo.exo4_bindingadapters.utils;
 
 import android.databinding.BindingAdapter;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.support.annotation.ColorInt;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
@@ -40,12 +36,6 @@ public class BindingAdapterUtils {
             Typeface type = Typeface.createFromAsset(view.getContext().getAssets(), "fonts/" + lastFont + ".ttf");
             view.setTypeface(type);
         }
-    }
-
-    @BindingAdapter("starColor")
-    public static void setStarColor(RatingBar ratingBar, @ColorInt int starColor){
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(starColor, PorterDuff.Mode.SRC_ATOP);
     }
 
     @BindingAdapter(value = {"posterSrc", "defaultImage"}, requireAll = false)

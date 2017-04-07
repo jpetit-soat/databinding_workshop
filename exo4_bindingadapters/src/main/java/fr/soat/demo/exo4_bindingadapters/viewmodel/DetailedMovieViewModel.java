@@ -7,12 +7,10 @@ import android.support.v4.content.res.ResourcesCompat;
 
 import fr.soat.demo.exo4_bindingadapters.R;
 import fr.soat.demo.moviesmodel.model.CulturalType;
-import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
 import fr.soat.demo.moviesmodel.utils.DrawableUtils;
-import fr.soat.demo.moviesmodel.utils.StringUtils;
 
 /**
  * Created by yann_huriez on 06/02/17.
@@ -23,68 +21,54 @@ public class DetailedMovieViewModel {
     private final MovieSeriesModel movieModel;
     private final Context context;
 
-    public String plot;
-    public String director = null;
-    public String writers = null;
-    public @DrawableRes int countryDrawableRes;
-    public String countryText;
-    public String duration = null;
-    public float rating = -1;
-
     public DetailedMovieViewModel(Context context, MovieSeriesModel movieModel) {
         this.context = context;
         this.movieModel = movieModel;
-
-        init();
     }
 
     public PosterModel getPosterModel(){
         return movieModel.getPosterModel();
     }
 
-    private void init(){
-        // Plot
-        plot = movieModel.getPlot();
+    public String getPlot() {
+        return movieModel.getPlot();
+    }
 
-        // Director
+    public String getDirector() {
         if(movieModel.getDirector() != null){
-            director = context.getString(R.string.format_director, movieModel.getDirector());
+            return context.getString(R.string.format_director, movieModel.getDirector());
         }
+        return null;
+    }
 
-        // Writers
-        if (movieModel.getWriters() != null && !movieModel.getWriters().isEmpty()) {
-            writers = context.getString(R.string.format_writers, StringUtils.assembleString(movieModel.getWriters(), ", "));
-        }
-
-        // Country
-        String mainCountry = movieModel.getCountry() != null ? movieModel.getCountry().get(0) : null;
-        countryDrawableRes = DrawableUtils.getCountryDrawable(mainCountry);
-        if (countryDrawableRes > 0) {
-            countryText = context.getString(R.string.format_country_with_drawable);
-        } else {
-            countryText = context.getString(R.string.format_country_with_param, mainCountry);
-        }
-
-        // Runtime
+    public String getDuration() {
         int runtimeValue = movieModel.getRuntime();
         if (runtimeValue > 0) {
             String durationString = DateUtils.formatDuration(context, runtimeValue);
-            duration = context.getString(R.string.format_duration, durationString);
+            return context.getString(R.string.format_duration, durationString);
         }
-
-        // Rating
-        if(movieModel.getImdbRating() >= 0) {
-            rating = movieModel.getImdbRating() / 2.0f;
-        }
+        return null;
     }
 
     public Drawable getCountryDrawable(){
-        return ResourcesCompat.getDrawable(context.getResources(), countryDrawableRes, null);
+        String mainCountry = movieModel.getCountry() != null ? movieModel.getCountry().get(0) : null;
+        if(mainCountry != null) {
+            @DrawableRes int countryDrawableRes = DrawableUtils.getCountryDrawable(mainCountry);
+            return ResourcesCompat.getDrawable(context.getResources(), countryDrawableRes, null);
+        }
+        return null;
     }
 
     // //////////////
     // New Methods //
     // //////////////
+
+    public float getRating(){
+        if(movieModel.getImdbRating() >= 0) {
+            return movieModel.getImdbRating() / 2.0f;
+        }
+        return 0;
+    }
 
     public String getPlotFont(){
         CulturalType newType = getPosterModel().getType();
@@ -93,9 +77,5 @@ public class DetailedMovieViewModel {
         } else {
             return "helvetica_normal";
         }
-    }
-
-    public MovieRating getMovieRating() {
-        return movieModel.getMovieRating();
     }
 }

@@ -2,28 +2,22 @@ package fr.soat.demo.exo4_bindingadapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
 
 import fr.soat.demo.exo4_bindingadapters.databinding.ViewFilterAndDetailledMovieBinding;
-import fr.soat.demo.exo4_bindingadapters.utils.MovieRatingView;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.DetailedMovieViewModel;
 import fr.soat.demo.exo4_bindingadapters.viewmodel.FiltersViewModel;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
-import fr.soat.demo.moviesmodel.model.MovieRating;
 import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
@@ -71,30 +65,15 @@ public class MainActivity extends AppCompatActivity implements FilterListener {
 
 
     private void updateViewWithDetails(DetailedMovieViewModel movieOrSeriesModel) {
-        // TODO Here, we hide views that may don't have their relative value. Must be changed by a BindingAdapter.
-        View directorView = findViewById(R.id.detailed_movie_director);
+        // TODO Here, we hide the duration view if it don't have a value. Must be changed by a BindingAdapter.
         View durationView = findViewById(R.id.detailed_movie_duration);
-        TextView plotView = (TextView) findViewById(R.id.detailed_movie_plot);
-        View writersView = findViewById(R.id.detailed_movie_writers);
-
-        setVisible(directorView, movieOrSeriesModel.director != null);
-        setVisible(durationView, movieOrSeriesModel.duration != null);
-        setVisible(plotView, movieOrSeriesModel.plot != null);
-        setVisible(writersView, movieOrSeriesModel.writers != null);
-
+        setVisible(durationView, movieOrSeriesModel.getDuration() != null);
 
         // TODO Use a BindingAdapter to do this font switch directly inside the layout file.
         // Font change should be made only if there is a change in cultural type
+        TextView plotView = (TextView) findViewById(R.id.detailed_movie_plot);
         String plotFont = movieOrSeriesModel.getPlotFont();
         setFont(plotView, plotFont);
-
-
-        // TODO Use a BindingAdapter to pass the star color res through the layout file.
-        RatingBar movieRatingBar = (RatingBar) findViewById(R.id.detailed_movie_imdb_rating);
-
-        @ColorInt int starColor = ResourcesCompat.getColor(getResources(), R.color.star_color, null);
-        setStarColor(movieRatingBar, starColor);
-
 
         // TODO Load the poster using a BindingAdapter with multiple parameter : one for the URL, one for the default image in case of error.
         ImageView posterView = (ImageView) findViewById(R.id.simple_movie_poster);
@@ -102,15 +81,6 @@ public class MainActivity extends AppCompatActivity implements FilterListener {
 
         Drawable emptyPosterDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_empty_poster, null);
         setPosterImage(posterView, posterModel, emptyPosterDrawable);
-
-
-
-        // TODO Bonus Rename this custom view setter (setRatingForAudienceAndAdvertising) using "BindingMethods", then call it directly in the layout file.
-        MovieRatingView ratingView = (MovieRatingView) findViewById(R.id.detailed_movie_rating);
-        MovieRating movieRating = movieOrSeriesModel.getMovieRating();
-        if(movieRating != null) {
-            ratingView.setRatingForAudienceAndAdvertising(movieRating);
-        }
     }
 
     private void setVisible(View view, boolean visible){
@@ -131,11 +101,6 @@ public class MainActivity extends AppCompatActivity implements FilterListener {
             Typeface type = Typeface.createFromAsset(getAssets(), "fonts/" + lastFont + ".ttf");
             view.setTypeface(type);
         }
-    }
-
-    private void setStarColor(RatingBar ratingBar, @ColorInt int starColor){
-        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(starColor, PorterDuff.Mode.SRC_ATOP);
     }
 
     private void setPosterImage(ImageView imageView, PosterModel posterModel, Drawable defaultView){
