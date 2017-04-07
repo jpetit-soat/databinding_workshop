@@ -12,6 +12,7 @@ Nous verrons dans cet exercice :
 
 * Comment utiliser un binding sur un ensemble de vue.
 * Comment mettre de la logique directement dans votre vue.
+* Comment utiliser des méthodes statiques ou propriétés statiques depuis la vue.
 
 ## Rappels
 
@@ -88,6 +89,22 @@ android:text="@{@plurals/orange(orangeCount, orangeCount)}"
 
 Documentation : https://developer.android.com/topic/libraries/data-binding/index.html#expression_language
 
+### Imports
+
+Le data binding permet également d'utiliser les méthodes ou propriétés statiques d'une classe. Pour celà, il suffit juste d'ajouter référence la classe :
+
+```xml
+<data>
+    <import type="com.example.MyStringUtils"/>
+    <variable name="user" type="com.example.User"/>
+</data>
+…
+<TextView
+   android:text="@{MyStringUtils.capitalize(user.lastName)}"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"/>
+```
+
 ## Exercice
 
 1. Créez le binding de l'objet `PosterModel` pour que cela continue à fonctionner exactement comme actuellement en supprimant les deux methodes suivantes :
@@ -103,3 +120,5 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
    * `date`
    * `genres`
    * `actors`
+   
+   (Tips : Essayez de mettre en référence la/les classe(s) contenant les méthodes utilisés)
