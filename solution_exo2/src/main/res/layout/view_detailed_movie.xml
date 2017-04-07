@@ -51,27 +51,11 @@
             tools:text="Director : James Gunn" />
 
         <TextView
-            android:id="@+id/detailed_movie_writers"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/detailed_movie_director"
-            android:layout_marginTop="@dimen/spacing_base"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingEnd="@dimen/spacing_large"
-            android:paddingLeft="@dimen/spacing_large"
-            android:paddingRight="@dimen/spacing_large"
-            android:text="@{model.writers}"
-            android:paddingStart="@dimen/spacing_large"
-            tools:text="Writers : James Gunn, Nicole Perlman, Dan Abnett (based on the Marvel comic book by), Andy Lanning" />
-
-        <TextView
             android:id="@+id/detailed_movie_duration"
             style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/detailed_movie_writers"
+            android:layout_below="@id/detailed_movie_director"
             android:layout_marginTop="@dimen/spacing_xlarge"
             android:ellipsize="end"
             android:maxLines="2"
@@ -97,38 +81,7 @@
             android:drawableEnd="@{model.countryDrawable}"
             android:drawablePadding="@dimen/spacing_base"
             android:drawableRight="@{model.countryDrawable}"
-            android:text="@{model.countryText}"
-            tools:text="@string/format_country_with_drawable" />
-
-        <RatingBar
-            android:id="@+id/detailed_movie_imdb_rating"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/detailed_movie_country"
-            android:layout_marginEnd="@dimen/spacing_large"
-            android:layout_marginRight="@dimen/spacing_large"
-            android:layout_marginTop="@dimen/spacing_base"
-            android:isIndicator="true"
-            android:rating="@{model.rating}"
-            android:numStars="5"
-            android:stepSize="0.5"
-            tools:rating="4.5" />
-
-        <ImageView
-            android:id="@+id/detailed_movie_imdb_icon"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_alignBottom="@id/detailed_movie_imdb_rating"
-            android:layout_marginEnd="@dimen/spacing_base"
-            android:layout_marginRight="@dimen/spacing_base"
-            android:layout_toLeftOf="@id/detailed_movie_imdb_rating"
-            android:layout_toStartOf="@id/detailed_movie_imdb_rating"
-            android:src="@drawable/icon_imdb"
-            tools:ignore="ContentDescription" />
-
+            android:text="@string/format_country_with_drawable" />
 
     </RelativeLayout>
 </layout>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import fr.soat.demo.exo2_viewmodel.databinding.ViewDetailedMovieBinding;
@@ -15,7 +14,6 @@ import fr.soat.demo.moviesmodel.model.MovieSeriesModel;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 import fr.soat.demo.moviesmodel.utils.DateUtils;
 import fr.soat.demo.moviesmodel.utils.DrawableUtils;
-import fr.soat.demo.moviesmodel.utils.StringUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView detailedMoviePlot;
     private TextView detailedMovieDirector;
-    private TextView detailedMovieWriters;
     private TextView detailedMovieCountry;
     private TextView detailedMovieDuration;
-    private ImageView detailedMovieImdbIcon;
-    private RatingBar detailedMovieImdbRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         detailedMoviePlot = (TextView) findViewById(R.id.detailed_movie_plot);
         detailedMovieDirector = (TextView) findViewById(R.id.detailed_movie_director);
-        detailedMovieWriters = (TextView) findViewById(R.id.detailed_movie_writers);
         detailedMovieCountry = (TextView) findViewById(R.id.detailed_movie_country);
         detailedMovieDuration = (TextView) findViewById(R.id.detailed_movie_duration);
-        detailedMovieImdbIcon = (ImageView) findViewById(R.id.detailed_movie_imdb_icon);
-        detailedMovieImdbRating = (RatingBar) findViewById(R.id.detailed_movie_imdb_rating);
     }
 
     private void initData(MovieSeriesModel movieModel) {
@@ -119,11 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
         String plot;
         String director = null;
-        String writers = null;
         @DrawableRes int countryDrawableRes;
-        String countryText;
         String duration = null;
-        float rating = -1;
 
         // Plot
         plot = movieModel.getPlot();
@@ -133,20 +122,6 @@ public class MainActivity extends AppCompatActivity {
             director = getString(R.string.format_director, movieModel.getDirector());
         }
 
-        // Writers
-        if (movieModel.getWriters() != null && !movieModel.getWriters().isEmpty()) {
-            writers = getString(R.string.format_writers, StringUtils.assembleString(movieModel.getWriters(), ", "));
-        }
-
-        // Country
-        String mainCountry = movieModel.getCountry() != null ? movieModel.getCountry().get(0) : null;
-        countryDrawableRes = DrawableUtils.getCountryDrawable(mainCountry);
-        if (countryDrawableRes > 0) {
-            countryText = getString(R.string.format_country_with_drawable);
-        } else {
-            countryText = getString(R.string.format_country_with_param, mainCountry);
-        }
-
         // Runtime
         int runtimeValue = movieModel.getRuntime();
         if (runtimeValue > 0) {
@@ -154,20 +129,15 @@ public class MainActivity extends AppCompatActivity {
             duration = getString(R.string.format_duration, durationString);
         }
 
-        // Rating
-        if(movieModel.getImdbRating() >= 0) {
-            rating = movieModel.getImdbRating() / 2.0f;
-        }
-
+        // Country
+        String mainCountry = movieModel.getCountry().get(0);
+        countryDrawableRes = DrawableUtils.getCountryDrawable(mainCountry);
 
         // Then we put theses formatted data into their respectives view
 
         detailedMoviePlot.setText(plot);
         detailedMovieDirector.setText(director);
-        detailedMovieWriters.setText(writers);
-        detailedMovieCountry.setCompoundDrawablesWithIntrinsicBounds(0, 0, countryDrawableRes, 0);
-        detailedMovieCountry.setText(countryText);
         detailedMovieDuration.setText(getString(R.string.format_duration, duration));
-        detailedMovieImdbRating.setRating(rating);
+        detailedMovieCountry.setCompoundDrawablesWithIntrinsicBounds(0, 0, countryDrawableRes, 0);
     }
 }
