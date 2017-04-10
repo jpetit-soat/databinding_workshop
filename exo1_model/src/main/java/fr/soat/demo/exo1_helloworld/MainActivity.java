@@ -1,11 +1,11 @@
 package fr.soat.demo.exo1_helloworld;
 
+import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import fr.soat.demo.exo1_helloworld.databinding.ViewPosterBinding;
 import fr.soat.demo.moviesmodel.business.MovieSeriesBusinessService;
 import fr.soat.demo.moviesmodel.model.PosterModel;
 
@@ -13,52 +13,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String MOVIE_NAME = "Guardians of the galaxy";
 
-    private ImageView moviePoster;
-    private TextView movieTitle;
-    private TextView movieYear;
-    private TextView movieActors;
-    private TextView movieGenres;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO Replace with right method coming from DataBindingUtils
-        setContentView(R.layout.view_poster);
-
-        // TODO This method is not needed with DataBinding
-        initFields();
+        ViewPosterBinding binding = DataBindingUtil.setContentView(this, R.layout.view_poster);
 
         // This object contains all the needed data for the view
         PosterModel posterModel = getPosterModel();
 
-        // TODO The data must be given to the binding
-        initData(posterModel);
-    }
-
-    private void initFields() {
-        moviePoster = (ImageView) findViewById(R.id.simple_movie_poster);
-        movieTitle = (TextView) findViewById(R.id.simple_movie_title);
-        movieYear = (TextView) findViewById(R.id.simple_movie_year);
-        movieActors = (TextView) findViewById(R.id.simple_movie_actors);
-        movieGenres = (TextView) findViewById(R.id.simple_movie_genre);
-    }
-
-    private void initData(PosterModel posterModel) {
-
-        moviePoster.setImageDrawable(posterModel.getImageLoaded());
-
-        movieTitle.setText(posterModel.getTitle());
-
-        movieYear.setText(posterModel.getFormattedDate(this));
-
-        movieGenres.setText(posterModel.getFormattedGenres());
-
-        movieActors.setText(posterModel.getFormattedActors(this));
-
-        // TODO Bonus
-        // If you feel great, try to make a binding
-        // without using methods "getFormatted..."
+        binding.setModel(posterModel);
     }
 
     public PosterModel getPosterModel() {

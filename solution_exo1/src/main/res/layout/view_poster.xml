@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="fr.soat.demo.moviesmodel.utils.StringUtils" />
+        <import type="fr.soat.demo.moviesmodel.utils.DateUtils" />
         <variable
             name="model"
             type="fr.soat.demo.moviesmodel.model.PosterModel"/>
@@ -38,6 +40,7 @@
             android:text="@{model.title}"
             tools:text="Guardians of the Galaxy" />
 
+
         <TextView
             android:id="@+id/simple_movie_year"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
@@ -48,8 +51,8 @@
             android:layout_marginStart="@dimen/spacing_base"
             android:layout_toEndOf="@id/simple_movie_poster"
             android:layout_toRightOf="@id/simple_movie_poster"
-            android:text="@{model.getFormattedDate(context)}"
-            tools:text="13 août 2014" />
+            tools:text="13 août 2014"
+            android:text="@{DateUtils.formatDateToString(model.releaseDate, @string/date_format_release)}"/>
 
         <TextView
             android:id="@+id/simple_movie_genre"
@@ -64,8 +67,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textStyle="italic"
-            android:text="@{model.formattedGenres}"
-            tools:text="Science-fiction, Action" />
+            tools:text="Science-fiction, Action"
+            android:text='@{StringUtils.assembleString(model.genres, ",")}'/>
 
         <TextView
             android:id="@+id/simple_movie_actors"
@@ -79,8 +82,8 @@
             android:layout_toRightOf="@id/simple_movie_poster"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@{model.getFormattedActors(context)}"
-            tools:text="Actor : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..." />
+            tools:text="Actor : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..."
+            android:text='@{@string/format_actors(StringUtils.assembleString(model.actors, ","))}'/>
 
     </RelativeLayout>
 </layout>
