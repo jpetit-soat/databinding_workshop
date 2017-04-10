@@ -237,5 +237,4 @@ Documentation : https://developer.android.com/topic/libraries/data-binding/index
 ## Exercice
 
 1. Gérez les interactions (clic, input de texte...) dans la classe `FiltersViewModel` tel qu'elles sont gérées dans la méthode `initListeners()`.
-2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran, en utilisant un héritage vers la classe `BaseObservable`.
-3. **Bonus** : Gérez la mise à jour de la vue sans utiliser l'héritage vers la classe `BaseObservable`.
+2. Faire en sorte que la classe `FiltersViewModel` gère la mise à jour de la vue lorsque l'utilisateur a effectué une action sur l'écran, soit en utilisant un héritage vers la classe `BaseObservable` soit en utilisant des `ObservableFields`.

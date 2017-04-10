@@ -1,10 +1,10 @@
-# Exercice 5 : RecyclerView et Data Binding
+# Exercice Bonus : RecyclerView et Data Binding
 
 ## Objectif
 
 Grâce aux exercices précédents, nous avons pu voir les différentes façettes du Data Binding et comment celui-ci fonctionne globalement.
  
-Dans cet exercice final, nous allons découvrir une méthode permettant de simplifier grandement la gestion de listes de vues, à l'aide d'une **RecyclerView** gérant le **Data Binding**.
+Dans cet exercice bonus, nous allons découvrir une méthode permettant de simplifier grandement la gestion de listes de vues, à l'aide d'une **RecyclerView** gérant le **Data Binding**.
 
 Nous allons pour cela réutiliser les vues créées précédemment et les intégrer à cette RecyclerView.
 
