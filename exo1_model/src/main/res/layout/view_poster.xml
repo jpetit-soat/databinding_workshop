@@ -50,7 +50,7 @@
             android:layout_toEndOf="@id/simple_movie_poster"
             android:layout_toRightOf="@id/simple_movie_poster"
             tools:text="13 août 2014"
-            android:text="@{DateUtils.formatDateToString(poster.releaseDate, @string/date_format_release)}"/>
+            android:text="@{model.getFormattedDate(context)}"/>
 
         <TextView
             android:id="@+id/simple_movie_genre"
@@ -66,7 +66,7 @@
             android:maxLines="1"
             android:textStyle="italic"
             tools:text="Science-fiction, Action"
-            android:text="@{StringUtils.assembleString(poster.genres)}"/>
+            android:text="@{model.formattedGenres}"/>
 
         <TextView
             android:id="@+id/simple_movie_actors"
@@ -81,7 +81,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             tools:text="Actor : Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan..."
-            android:text="@{@string/format_actors(StringUtils.assembleString(poster.actors))}"/>
+            android:text="@{model.getFormattedActors(context)}"/>
 
     </RelativeLayout>
 </layout>
