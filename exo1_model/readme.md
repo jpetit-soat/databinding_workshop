@@ -107,18 +107,12 @@ Le data binding permet également d'utiliser les méthodes ou propriétés stati
 
 ## Exercice
 
-1. Créez le binding de l'objet `PosterModel` pour que cela continue à fonctionner exactement comme actuellement en supprimant les deux methodes suivantes :
-    * `initFields();` 
-    * `initData(posterModel);`
+N'utilisez plus les méthodes qui permettent le fomattage :
+* `getFormattedDate` 
+* `getFormattedGenres` 
+* `getFormattedActors`
     
-2. Pour aller plus loin, n'utilisez plus les méthodes qui permettent le fomattage :
-    * `getFormattedDate` 
-    * `getFormattedGenres` 
-    * `getFormattedActors`
-    
-   A la place, formattez les propriétés suivantes directement depuis fichier de layout :
-   * `date`
-   * `genres`
-   * `actors`
-   
-   (Tips : Essayez de mettre en référence la/les classe(s) contenant les méthodes utilisés)
+A la place, formattez les propriétés suivantes directement depuis fichier de layout :
+* `date`
+* `genres`
+* `actors`
