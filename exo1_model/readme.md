@@ -35,7 +35,7 @@ public class User {
 <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{user.getValueWithInt(12)}"/>
+        android:text="@{user.getTextWithInt(12)}"/>
 ```
 
 Il est également possible de passer un objet `Context` en paramètre, depuis n'importe quel layout bindé : il suffit pour cela d'utiliser le mot-clé `context` :
