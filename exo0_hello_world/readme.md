@@ -118,10 +118,10 @@ protected void onCreate(Bundle savedInstanceState) {
 1. Créez un Binding sur une chaine de caractères
 
     Pour ce faire, il faudra :
-    * Modifier le fichier layout `view_poster.xml` pour que la `TextView` avec l'identifiant `textview` soit lié à une `String`
+    * Modifier le fichier layout `view_hello_world.xml` pour que la `TextView` avec l'identifiant `textview` soit lié à une `String`
 2. Créez un Binding sur un objet plus complexe
 
     Pour ce faire, il faudra :
     * Créez une classe `PosterModel` ayant une propriété `title`
-    * Modifiez le fichier layout `view_poster.xml` pour que la `TextView` avec l'identifiant `textview` soit lié (bind) à la propriété `title` de type `PosterModel`
+    * Modifiez le fichier layout `view_hello_world.xml` pour que la `TextView` avec l'identifiant `textview` soit lié (bind) à la propriété `title` de type `PosterModel`
     * N'oubliez pas de bien mettre en place la liaison de la donnée (Binding data) au sein de la `MainActivity`
